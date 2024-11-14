@@ -1,13 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-     Cohort47
+
+    <div>
+      <Header />
+
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;

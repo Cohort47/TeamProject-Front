@@ -1,0 +1,121 @@
+.header {
+  background-color: #edf0f0;
+  padding: 15px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: 20px;
+  
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+}
+
+.headerLogo {
+  width: 230px;
+  height: auto;
+  padding: 15px;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center; 
+  margin-right: 50px; 
+}
+
+.personalAccount {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  
+
+}
+
+.headerBottom {
+  background-color: #6b5aff;
+  border-radius: 15px;
+  padding: 15px 20px;
+  width: 90%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.navContainer {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.headerList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.headerListItem {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.headerLink {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.headerLink:hover {
+  color: #ff6600;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.headerBtnLink,
+.headerBtnCall {
+  background: none;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.headerBtnLink:hover,
+.headerBtnCall:hover {
+  background-color: #333;
+  color: #fff;
+}
