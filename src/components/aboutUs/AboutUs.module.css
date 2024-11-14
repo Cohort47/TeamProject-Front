@@ -1,0 +1,52 @@
+.aboutUs {
+  background-color: #edf0f0;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .titleContainerTest { 
+    
+  } */
+.title {
+  font-size: 45px;
+  font-weight: initial;
+  margin:5px 0;
+  color: #26434d;
+  text-align: left;
+  padding: 20px 400px 10px 5px;
+
+}
+
+.photoContainer {
+  width: 80%;
+  max-width: 1140px;
+  margin-bottom: 150px;
+  margin-right: 0px;
+  text-align: center;
+}
+
+.teamPhoto {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.textContainer {
+  background-color: #ffffff;
+  color: #333333;
+  width: 80%;
+  max-width: 1030px;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 50px 50px 100px 50px;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  text-align: left;
+}
+
+.contactContainer {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555555;
+}
