@@ -5,11 +5,11 @@ import Footer from "../footer/Footer";
 
 const App: React.FC = () => {
   return (
-
     <div>
       <Header />
 
       <Footer />
+
     </div>
   );
 };
