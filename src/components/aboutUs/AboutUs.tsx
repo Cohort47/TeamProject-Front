@@ -6,7 +6,7 @@ const AboutUs: React.FC = () => {
   return (
     <section className={styles.aboutUs} id="about-us">
       {/* <div className={styles.titleContainerTest}> */}
-      <h2 className={styles.title}>О НАС BERLIN TRAVEL AGENCY</h2>
+      <h2 className={styles.title}>BERLIN TRAVEL AGENCY</h2>
       {/* </div> */}
 
       <div className={styles.photoContainer}>

@@ -3,6 +3,16 @@ import styles from "./Header.module.css";
 import logo from "./berlin_small.png";
 
 const Header: React.FC = () => {
+  const menuItems = [
+    { text: "Главная", link: "/" },
+    { text: "О нас", link: "about-us" },
+    { text: "Услуги", link: "services" },
+    { text: "Преимущества", link: "advantages" },
+    { text: "Туры", link: "tours" },
+    { text: "Отели", link: "hotels" },
+    { text: "Контакты", link: "contacts" },
+  ];
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -26,20 +36,10 @@ const Header: React.FC = () => {
         <div className={styles.headerBottom}>
           <div className={styles.navContainer}>
             <ul className={styles.headerList}>
-              {[
-                "О нас",
-                "Услуги",
-                "Преимущества",
-                "Туры",
-                "Отели",
-                "Контакты",
-              ].map((item, index) => (
+              {menuItems.map((item, index) => (
                 <li className={styles.headerListItem} key={index}>
-                  <a
-                    href={`#${item.toLowerCase()}`}
-                    className={styles.headerLink}
-                  >
-                    {item.toUpperCase()}
+                  <a href={`${item.link}`} className={styles.headerLink}>
+                    {item.text.toUpperCase()}
                   </a>
                 </li>
               ))}

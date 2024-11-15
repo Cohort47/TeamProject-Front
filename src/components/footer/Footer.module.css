@@ -1,27 +1,22 @@
 .footer {
-  background-color: #edf0f0;
   color: #ffffff;
   padding: 15px 0;
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 0 auto;
 }
 
 .container {
-  width: 90%;
   max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
 }
 
 .footerBottom {
   background-color: #333333;
   border-radius: 15px;
   padding: 15px 20px;
-  width: 90%;
   max-width: 1200px;
   display: flex;
   justify-content: flex-start;
@@ -35,7 +30,6 @@
   line-height: 1.5;
   text-align: left;
   margin-left: 40px;
-  
 }
 
 .footerCenter {
@@ -48,7 +42,7 @@
 }
 
 .footerLogo {
-  width: 230px; 
+  width: 230px;
   height: auto;
   padding: 0px;
 }
@@ -58,14 +52,13 @@
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
-  margin-right: 20PX;
+  margin-right: 20px;
 }
 
 .contactItem {
   color: #63fdc2;
   text-decoration: none;
   font-size: 14px;
-  
 }
 
 .contactItem:hover {
