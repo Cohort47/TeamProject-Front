@@ -1,0 +1,92 @@
+.tourSearchContainer {
+  background-color: #e9e9e9;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 1080px;
+  margin: 50px auto 50px auto;
+}
+
+.title {
+  font-size: 34px;
+  font-weight: normal;
+  color: #26434d;
+  margin-bottom: 20px;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.searchBox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px; 
+  align-items: flex-end; 
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.searchField {
+  display: flex;
+  flex-direction: column;
+  flex: 1; 
+  min-width: 100px;
+}
+
+.dateField {
+  flex: 1; 
+}
+
+.smallField {
+  flex: 0 1 80px; 
+}
+
+.searchField label {
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.searchField select,
+.searchField input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+.searchButton {
+  padding: 14px 30px;
+  font-size: 14px;
+  color: #cc9933;
+  border: 1px solid #cc9933;
+  border-radius: 15px;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-self: flex-end; 
+}
+
+.searchButton:hover {
+  background-color: #f2e2cc;
+}
+
+@media (max-width: 768px) {
+  .searchBox {
+    flex-direction: column;
+    align-items: stretch; 
+  }
+
+  .searchField,
+  .smallField,
+  .dateField {
+    width: 100%;
+  }
+
+  .searchButton {
+    width: 100%;
+  }
+}
