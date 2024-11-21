@@ -3,6 +3,7 @@ import TourCard from "./TourCard";
 import TourSortSection from "../tourSort/TourSortSection";
 import { sortTours, SortCriteria } from "../tourSort/sortTours";
 import styles from "./TourList.module.css";
+import TourSearch from "../tourSearch/TourSearch";
 
 const tours = [
   {
@@ -117,30 +118,33 @@ const TourList: React.FC = () => {
   };
 
   return (
-    <div className={styles.tourListContainer}>
-      <TourSortSection onSortChange={setSortCriteria} />
+    <>
+      <TourSearch />
+      <div className={styles.tourListContainer}>
+        <TourSortSection onSortChange={setSortCriteria} />
 
-      <div className={styles.titleSection}>
-        <h2 className={styles.title}>ТУРЫ</h2>
+        <div className={styles.titleSection}>
+          <h2 className={styles.title}>ТУРЫ</h2>
+        </div>
+
+        <div className={styles.tourGrid}>
+          {visibleTours.map((tour, index) => (
+            <TourCard key={index} {...tour} />
+          ))}
+
+          {visibleToursCount < sortedTours.length && (
+            <div className={styles.viewAllButtonContainer}>
+              <button
+                className={styles.viewAllButton}
+                onClick={handleViewAllClick}
+              >
+                Посмотреть все варианты
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-
-      <div className={styles.tourGrid}>
-        {visibleTours.map((tour, index) => (
-          <TourCard key={index} {...tour} />
-        ))}
-
-        {visibleToursCount < sortedTours.length && (
-          <div className={styles.viewAllButtonContainer}>
-            <button
-              className={styles.viewAllButton}
-              onClick={handleViewAllClick}
-            >
-              Посмотреть все варианты
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
+    </>
   );
 };
 
