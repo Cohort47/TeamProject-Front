@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #ffffff;
+    color: #333;
+    border-radius: 20px;
+  }
+  
+  .errorCode {
+    font-size: 96px;
+    font-weight: bold;
+    color: #bfa980;
+    margin: 0;
+  }
+  
+  .message {
+    font-size: 24px;
+    margin: 20px 0;
+  }
+  
+  .goHomeButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #bfa980;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .goHomeButton:hover {
+    background-color: #a58e70;
+  }
+  
