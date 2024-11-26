@@ -10,8 +10,9 @@
   font-weight: bold;
   margin: 5px 0;
   color: #26434d;
-  align-self: flex-start;
+  text-align: center;
 }
+
 
 .photoContainer {
   width: 80%;
