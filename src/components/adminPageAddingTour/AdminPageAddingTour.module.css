@@ -1,0 +1,157 @@
+.addTour {
+  padding: 40px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #26434d;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.inputContainer,
+.textAreaContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.required {
+  color: red;
+  margin-left: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  background-color: #000;
+  color: #fff;
+  font-size: 12px;
+  padding: 5px;
+  border-radius: 5px;
+  transition: visibility 0.2s, opacity 0.2s;
+  white-space: nowrap;
+}
+
+.required:hover + .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.input,
+.textArea {
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  resize: none;
+}
+
+.textArea {
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  resize: none;
+  overflow: hidden;
+  min-height: 100px;
+}
+
+.textArea:focus {
+  outline: none;
+}
+
+.charCount {
+  text-align: right;
+  font-size: 12px;
+  color: #888;
+  margin-top: 5px;
+}
+.required[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  background: #000;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+  top: -25px;
+  left: 20px;
+}
+.attachContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.attachLabel {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.attachButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.attachButton:hover {
+  color: #63fdc2;
+}
+
+.submitButton {
+  align-self: center;
+  background-color: #63fdc2;
+  border: none;
+  color: #26434d;
+  font-size: 14px;
+  padding: 10px 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #52d8a8;
+}

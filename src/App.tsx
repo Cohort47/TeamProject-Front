@@ -12,6 +12,7 @@ import Guides from "./components/guides/Guides";
 import Premium from "./components/premium/Premium";
 import AccountManagement from "./components/personalAccount/AccountManagement";
 import YourTours from "./components/personalAccountTours/YourTours";
+import AdminPageAddingTour from "./components/adminPageAddingTour/AdminPageAddingTour";
 
 
 
@@ -30,6 +31,7 @@ const App: React.FC = () => {
         <Route path="/premium" element={<Premium />} />
         <Route path="/account-management" element={<AccountManagement />} />
         <Route path="/your-tours" element={<YourTours />} />
+        <Route path="/admin-add-tour" element={<AdminPageAddingTour />} />
 
       </Routes>
       <Footer />
