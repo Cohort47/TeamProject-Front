@@ -10,6 +10,11 @@ import BookingCars from "./components/bookCars/BookingCars";
 import Pools from "./components/pools/Pools";
 import Guides from "./components/guides/Guides";
 import Premium from "./components/premium/Premium";
+import AccountManagement from "./components/personalAccount/AccountManagement";
+import YourTours from "./components/personalAccountTours/YourTours";
+
+
+
 
 const App: React.FC = () => {
   return (
@@ -23,6 +28,9 @@ const App: React.FC = () => {
         <Route path="/pools" element={<Pools />} />
         <Route path="/guides" element={<Guides />} />
         <Route path="/premium" element={<Premium />} />
+        <Route path="/account-management" element={<AccountManagement />} />
+        <Route path="/your-tours" element={<YourTours />} />
+
       </Routes>
       <Footer />
     </Router>
