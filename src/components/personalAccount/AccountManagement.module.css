@@ -49,8 +49,8 @@
 }
 
 .editButton:hover {
-  background-color: #6B5AFF; /* Новый цвет фона при наведении */
-  color: #ffffff; /* Цвет текста при наведении */
+  background-color: #63fdc2; /* Новый цвет фона при наведении */
+  color: #26424b; /* Цвет текста при наведении */
 }
 
 .saveContainer {
@@ -60,16 +60,17 @@
 }
 
 .saveButton {
-  background-color: #63fdc2; /* Новый цвет фона кнопки */
-  color: #26434d;
+  background-color: #ffffff;
+  border: 1px solid #63fdc2; /* Новый цвет для границы */
+  color: #26434d; /* Новый основной цвет кнопки */
   font-size: 16px;
   padding: 10px 20px;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s ease;
 }
 
 .saveButton:hover {
-  background-color: #555555; /* Цвет кнопки при наведении */
+  background-color: #63fdc2; /* Новый цвет фона при наведении */
+  color: #26424b; /* Цвет текста при наведении */
 }
