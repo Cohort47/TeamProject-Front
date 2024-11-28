@@ -1,0 +1,76 @@
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background: none;
+}
+
+.loginBox {
+  background: linear-gradient(
+    to bottom,
+    #606be3,
+    #969cdf,
+    #d2c2dc,
+    #80a1c3,
+    #90bce7,
+    #40e0d0,
+    #01f9e0
+  );
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  text-align: center;
+  max-width: 300px;
+  width: 30%;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #fbfbfb;
+}
+
+.input {
+  width: calc(100% - 20px);
+  padding: 5px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+.passwordContainer {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  justify-content: center;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 24px;
+  height: 17px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.forgotPassword {
+  display: block;
+  margin-top: 20px;
+  color: #342146;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.forgotPassword:hover {
+  text-decoration: underline;
+}
