@@ -1,0 +1,228 @@
+.container {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hotelInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hotelDetails {
+  flex: 1;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.address {
+  font-size: 16px;
+  color: #777;
+}
+
+.price {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.priceText {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  background-color: #f0f0ff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-align: center;
+  display: inline-block;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.mainImageWrapper {
+  width: 100%;
+  max-width: 1150px;
+  height: 700px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.mainImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.smallImages {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  width: 100%;
+  max-width: 1150px;
+}
+
+.smallImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.smallImage:hover {
+  transform: scale(1.05);
+}
+
+.arrowButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.arrowButton::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: solid #fff;
+  border-width: 5px 5px 0 0;
+}
+
+.leftArrow::before {
+  transform: rotate(-135deg);
+}
+
+.rightArrow::before {
+  transform: rotate(45deg);
+}
+
+.arrowButton:hover::before {
+  border-color: #000;
+}
+
+.leftArrow {
+  left: 40px;
+}
+
+.rightArrow {
+  right: 20px;
+}
+
+.smallImages {
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  position: relative;
+}
+
+.smallImage {
+  aspect-ratio: 3 / 2;
+  border-radius: 5px;
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.smallImage:hover {
+  transform: scale(1.05);
+}
+
+.morePhotos {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #000;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.morePhotos:hover {
+  background-color: #63fdc2;
+}
+
+.hidePhotos {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(245, 245, 245, 0.8);
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #6b5aff;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  position: relative;
+}
+
+.description {
+  max-width: 800px;
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+  text-align: justify;
+  margin-left: 30px;
+  margin-bottom: 70px;
+}
+
+.bookButton {
+  background-color: #ffffff;
+  border: 1px solid #63fdc2;
+  color: #26434d;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-top: 130px;
+  margin-right: 30px;
+}
+
+.bookButton:hover {
+  background-color: #63fdc2;
+  color: #26424b;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
