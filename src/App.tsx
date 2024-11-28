@@ -9,6 +9,7 @@ import RegistrationPage from "./components/registrationForm/RegistrationPage";
 import PasswordRecoveryPage from "./components/passwordRecoveryForm/PasswordRecoveryPage";
 import Login from "./components/login/Login";
 
+
 const App: React.FC = () => {
   return (
     <Router>
@@ -17,17 +18,6 @@ const App: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/tours" element={<TourList />} />
-        <Route
-          path="/login"
-          element={
-            <Login 
-              onRegisterClick={() => window.location.href = "/registration"}
-              onForgotPasswordClick={() => window.location.href = "/password-recovery"}
-            />
-          }
-        />
-        <Route path="/registration" element={<RegistrationPage />} />
-        <Route path="/password-recovery" element={<PasswordRecoveryPage />} />
       </Routes>
       <Footer />
     </Router>
