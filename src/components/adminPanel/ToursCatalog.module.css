@@ -1,0 +1,175 @@
+.toursCatalog {
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+}
+
+.toursList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.tourCard {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 850px;
+}
+
+.tourCard h3 {
+  margin: 0 0 10px;
+}
+
+.tourCard p {
+  margin: 5px 0;
+}
+
+.images {
+  display: flex;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.editBtn,
+.deleteBtn,
+.addTourBtn,
+.saveBtn {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.deleteBtn {
+  background: #dc3545;
+}
+
+.addTourBtn {
+  margin-top: -50px;
+  float: right;
+}
+
+.editTourForm {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.saveBtn {
+  background: #007bff;
+  margin-top: 10px;
+}
+
+.cancelBtn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.editTourForm {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 800px;
+  box-sizing: border-box;
+}
+
+.imagesSection {
+  margin-top: 20px;
+}
+
+.imageRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.addBtn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  background-color: #218838;
+}
+
+.deleteBtn {
+  background-color: #dc3545;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: #c82333;
+}
+
+.addTourBtn {
+  background: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+}
+
+.addTourBtn:hover {
+  background: #0056b3;
+}
