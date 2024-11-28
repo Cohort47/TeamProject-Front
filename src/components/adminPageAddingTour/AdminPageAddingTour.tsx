@@ -7,8 +7,11 @@ const AdminPageAddingTour: React.FC = () => {
     duration: "",
     price: "",
     description: "",
+     startDate: "",
+     endDate: "",
     photos: [] as File[],
   });
+
   const [errors, setErrors] = useState({
     tourName: false,
     duration: false,
@@ -134,6 +137,10 @@ const AdminPageAddingTour: React.FC = () => {
           </div>
         </div>
 
+
+
+
+
         <div className={styles.row}>
           <div className={styles.inputContainer}>
             <label className={styles.label}>
@@ -181,6 +188,39 @@ const AdminPageAddingTour: React.FC = () => {
             )}
           </div>
         </div>
+
+
+
+<div className={styles.row1}>
+          <div className={styles.inputContainer1}>
+            <label className={styles.label}>Начало тура</label>
+              <input
+                type="date"
+                name="startDate"
+                value={formData.startDate}
+                onChange={handleInputChange}
+                placeholder="Дата начала тура"
+                className={styles.input1}
+              />
+
+          </div>
+          <div className={styles.inputContainer1}>
+            <label className={styles.label}>
+              Конец тура
+            </label>
+            <input
+                type="date"
+                name="endDate"
+                value={formData.endDate}
+                onChange={handleInputChange}
+              placeholder="Дата конца тура"
+              className={styles.input1}
+            />
+          </div>
+        </div>
+
+
+
 
         <div className={styles.row}>
           <div className={styles.textAreaContainer}>
