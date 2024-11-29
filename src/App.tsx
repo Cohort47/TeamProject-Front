@@ -12,7 +12,7 @@ import PasswordRecoveryForm from "./components/passwordRecoveryForm/PasswordReco
 
 
 const App: React.FC = () => {
-  return (
+  return ( 
     <Router>
       <Header />
       <Routes>
