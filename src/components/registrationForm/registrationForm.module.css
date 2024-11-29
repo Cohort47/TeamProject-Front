@@ -1,0 +1,63 @@
+.gradientBackground {
+  background: linear-gradient(
+    to bottom,
+    #dda0dd,
+    #40e0d0
+  ); /* Переход от светло-фиолетового к бирюзовому */
+}
+
+.registrationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  background: none;
+}
+
+.registrationBox {
+  background: linear-gradient(
+    to bottom,
+    #606be3,
+    #969cdf,
+    #d2c2dc,
+    #80a1c3,
+    #90bce7,
+    #40e0d0,
+    #01f9e0
+  );
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+  width: 30%;
+}
+
+.title {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #fbfbfb;
+}
+
+.input {
+  width: calc(100% - 20px);
+  padding: 5px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+.passwordContainer {
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}

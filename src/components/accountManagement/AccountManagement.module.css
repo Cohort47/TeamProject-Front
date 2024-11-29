@@ -1,0 +1,98 @@
+.container {
+  max-width: 1160px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: "Arial", sans-serif;
+}
+
+.title {
+  text-align: left;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.th {
+  text-align: left;
+  font-weight: normal;
+  color: #555555;
+  padding: 10px;
+  width: 25%;
+}
+
+.td {
+  padding: 10px;
+  color: #333333;
+  width: 50%;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.editButton {
+  background-color: #ffffff;
+  border: 1px solid #63fdc2;
+  color: #26434d;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.editButton:hover {
+  background-color: #63fdc2;
+  color: #26424b;
+}
+
+.saveButton {
+  background-color: #00c04b;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 20px;
+}
+
+.saveButton:hover {
+  background-color: #009e3d;
+}
+
+.cancelButton {
+  background-color: #d9534f;
+  color: #ffffff;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancelButton:hover {
+  background-color: #c9302c;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
