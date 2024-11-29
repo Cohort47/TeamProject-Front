@@ -5,6 +5,10 @@ import Footer from "./components/footer/Footer";
 import AboutUs from "./components/aboutUs/AboutUs";
 import HomePage from "./components/homepage/HomePage";
 import TourList from "./components/tours/TourList";
+import RegistrationPage from "./components/registrationForm/RegistrationPage";
+import PasswordRecoveryPage from "./components/passwordRecoveryForm/PasswordRecoveryPage";
+import Login from "./components/login/Login";
+
 
 import LoginPage from "./components/login/LoginPage";
 import RegistrationForm from "./components/registrationForm/RegistrationForm";
