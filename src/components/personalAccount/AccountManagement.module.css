@@ -1,0 +1,76 @@
+.accountManagement {
+  padding: 40px 20px;
+  background-color: #f8f9fa;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #26434d;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.managementOptions {
+  width: 80%;
+  max-width: 800px;
+  margin-bottom: 30px;
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+}
+
+.optionLabel {
+  font-size: 16px;
+  color: #333333;
+}
+
+.editButton {
+  background-color: #ffffff;
+  border: 1px solid #63fdc2; /* Новый цвет для границы */
+  color: #26434d; /* Новый основной цвет кнопки */
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.editButton:hover {
+  background-color: #63fdc2; /* Новый цвет фона при наведении */
+  color: #26424b; /* Цвет текста при наведении */
+}
+
+.saveContainer {
+  width: 80%;
+  max-width: 800px;
+  text-align: right;
+}
+
+.saveButton {
+  background-color: #ffffff;
+  border: 1px solid #63fdc2; /* Новый цвет для границы */
+  color: #26434d; /* Новый основной цвет кнопки */
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.saveButton:hover {
+  background-color: #63fdc2; /* Новый цвет фона при наведении */
+  color: #26424b; /* Цвет текста при наведении */
+}

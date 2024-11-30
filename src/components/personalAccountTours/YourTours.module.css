@@ -1,0 +1,132 @@
+.yourTours {
+  padding: 40px 20px;
+  background-color: #f8f9fa;
+  border-radius: 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #26434d;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.city {
+  margin-bottom: 30px;
+}
+
+.cityTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333;
+}
+
+.cityDates {
+  font-size: 14px;
+  color: #777777;
+  margin-bottom: 15px;
+}
+
+.tour {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.tourImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+.tourDetails {
+  flex: 1;
+}
+
+.tourName {
+  font-size: 16px;
+  font-weight: bold;
+  color: #26434d;
+  margin-bottom: 5px;
+}
+
+.tourDates {
+  font-size: 14px;
+  color: #555555;
+}
+
+.tourStatus {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.completed {
+  color: #28a745;
+}
+
+.cancelled {
+  color: #dc3545;
+}
+
+.tourPriceContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+}
+
+.tourPrice {
+  font-size: 16px;
+  font-weight: bold;
+  color: #26434d;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.menuButton {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #26434d;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  min-width: 150px;
+  white-space: nowrap;
+}
+
+.dropdownItem {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 14px;
+  color: #333333;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dropdownItem:hover {
+  background-color: #f1f1f1;
+}
