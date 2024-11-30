@@ -50,7 +50,7 @@ const HomePage: React.FC = () => {
     {
       image: imageService4,
       title: "ПРОКАТ ТРАНСПОРТ",
-      link: "/transport-Rental"
+      link: "/bookingCars"
     },
   ];
 

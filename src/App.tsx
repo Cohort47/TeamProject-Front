@@ -15,7 +15,7 @@ import Pools from "./components/pools/Pools";
 import Premium from "./components/premium/Premium";
 import NotFoundPage from "./components/notFoundPage/NotFoundPage";
 import Guides from "./components/guides/Guides";
-import TransportRental from "./components/transportRental/TransportRental";
+import BookingCars from "./components/bookCars/BookingCars";
 
 
 const App: React.FC = () => {
@@ -33,8 +33,8 @@ const App: React.FC = () => {
         <Route path="/premium" element={<Premium />} />
         <Route path="/*" element={<NotFoundPage />} />
         <Route path="/guides" element={<Guides />} />
-        <Route path="/transport-Rental" element={<TransportRental />} />
-        
+        <Route path="/bookingCars" element={<BookingCars />} />
+
       </Routes>
       <Footer />
     </Router>
