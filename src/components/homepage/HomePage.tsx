@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
     },
     {
       image: image2,
-      title: "Экстримальные походы",
+      title: "Экстремальные походы",
       buttonText: "Подробнее",
     },
     {

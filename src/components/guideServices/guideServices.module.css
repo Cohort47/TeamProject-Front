@@ -1,0 +1,51 @@
+/* https://s3-alpha-sig.figma.com/img/f713/bf2d/0bf7c6cf4fc03cc92a3b1040aa9d8200?Expires=1733702400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=chgZ-cGAK2xtu3QjFl7zArXweFdcmNpVqmLdmaCSdwyXROwp05KJgf4ilU5PFvBizGRfXzj8S5ZwErs8NpUB94avSLOVTSh~icNQ7HdwYFK36dGWTp-0WelODJFuU6S9u7a8PD3nGl~xhb~MrwLcdGlRmSMGBuamgpu-ehTPaoRU4pZS3W7bpZTuzqf8mcG7lB98P2b48C8LjCwCM4U8yFgwFLh0fiNLHGWcf0MjnsmtMWm8dnHiS3riPwaPwILxAf0xbfzU5i4G3Iz63d6yQsuEL~KfvRBogv93GFbJ~T-UYsE0CkOjjjuMnMpHFzFr1EGQEBOlsxjyZzTGPL0ZRA__
+ */
+
+ .guideServices {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* .titleContainerTest { 
+      
+    } */
+  .title {
+    font-size: 38px;
+    font-weight: bold;
+    margin: 5px 0;
+    color: #26434d;
+    text-align: left;
+  }
+  
+  .photoContainer {
+    width: 80%;
+    max-width: 1140px;
+    margin-right: 0px;
+    text-align: center;
+  }
+  
+  .teamPhoto {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .textContainer {
+    background-color: #ffffff;
+    color: #333333;
+    width: 80%;
+    max-width: 1200px;
+    font-size: 16px;
+    line-height: 1.6;
+    padding: 50px 50px 50px 50px;
+    border-radius: 20px;
+    text-align: left;
+  }
+  
+  .contactContainer {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555555;
+  }
+  

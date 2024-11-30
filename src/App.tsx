@@ -6,6 +6,7 @@ import Footer from "./components/footer/Footer";
 import AboutUs from "./components/aboutUs/AboutUs";
 import HomePage from "./components/homepage/HomePage";
 import TourList from "./components/tours/TourList";
+import GuideServices from "./components/guideServices/GuideServices";
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/tours" element={<TourList />} />
+        <Route path="/services" element={<GuideServices />} />
       </Routes>
       <Footer />
     </Router>
