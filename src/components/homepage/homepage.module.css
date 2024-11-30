@@ -1,3 +1,7 @@
+.body{
+  max-width: 1200px;
+}
+
 .offersTitle {
   font-size: 30px;
   font-weight: bold;
@@ -16,6 +20,7 @@
   grid-template-areas:
     "card1 card2"
     "card3 card3"; /* Третья карточка занимает всю ширину */
+    margin-bottom: 50px;
 }
 
 /* Определение областей для карточек */
@@ -77,7 +82,8 @@
   color: white;
 }
 
-.title {
+.cardTitle {
+  color: #fff;
   font-size: 30px;
   font-weight: bold;
   margin: 0 0 10px;
@@ -98,4 +104,43 @@
 
 .cardButton:hover {
   background: rgba(255, 255, 255, 1);
+}
+
+.servicesTitle {
+  font-size: 30px;
+  font-weight: bold;
+  color: #26434d;
+  margin-left: 20px;
+}
+
+.servicesContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-items: center;
+}
+
+.serviceCard {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.serviceImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.serviceCardTitle {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 15px 10px;
+  background-color: #f5f5f5;
+  color: #26434d;
 }
