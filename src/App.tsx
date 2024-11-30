@@ -7,6 +7,7 @@ import AboutUs from "./components/aboutUs/AboutUs";
 import HomePage from "./components/homepage/HomePage";
 import TourList from "./components/tours/TourList";
 import GuideServices from "./components/guideServices/GuideServices";
+import PremiumService from "./components/premiumService/PremiumService";
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/tours" element={<TourList />} />
         <Route path="/services" element={<GuideServices />} />
+        <Route path="/premium-Service" element={<PremiumService />} />
       </Routes>
       <Footer />
     </Router>
