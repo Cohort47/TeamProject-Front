@@ -87,7 +87,7 @@
 }
 
 .headerLink:hover {
-  color: #ff6600;
+  color:#8ef2f2;
 }
 
 .buttonContainer {
@@ -109,6 +109,6 @@
 
 .headerBtnLink:hover,
 .headerBtnCall:hover {
-  border-color: #ff6600;
-  color: #ff6600;
+  border-color: #2ba918;
+  color: #8ef2f2;
 }

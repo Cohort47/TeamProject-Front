@@ -8,6 +8,7 @@ import HomePage from "./components/homepage/HomePage";
 import TourList from "./components/tours/TourList";
 import GuideServices from "./components/guideServices/GuideServices";
 import PremiumService from "./components/premiumService/PremiumService";
+import NotFoundPage from "./components/notFoundPage/NotFoundPage";
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
         <Route path="/tours" element={<TourList />} />
         <Route path="/services" element={<GuideServices />} />
         <Route path="/premium-Service" element={<PremiumService />} />
+        <Route path="/*" element={<NotFoundPage />} />
       </Routes>
       <Footer />
     </Router>
