@@ -8,6 +8,7 @@ import imageService1 from "./photo/service_1.jpg";
 import imageService2 from "./photo/service_2.jpg";
 import imageService3 from "./photo/service_3.jpg";
 import imageService4 from "./photo/service_4.jpg";
+import Advantages from "../advantages/Advantage";
 
 const HomePage: React.FC = () => {
   const cards = [
@@ -53,7 +54,6 @@ const HomePage: React.FC = () => {
       link: "/bookingCars",
     },
   ];
-  
 
   return (
     <div className={styles.body}>
@@ -96,6 +96,7 @@ const HomePage: React.FC = () => {
           ))}
         </div>
       </div>
+      <Advantages />
     </div>
   );
 };
