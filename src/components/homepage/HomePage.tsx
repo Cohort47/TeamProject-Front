@@ -15,19 +15,19 @@ const HomePage: React.FC = () => {
       image: imageSpetial1,
       title: "Экскурсии",
       buttonText: "Подробнее",
-      link: "/excursions"
+      link: "/excursions",
     },
     {
       image: imageSpetial2,
       title: "Экстремальные походы",
       buttonText: "Подробнее",
-      link: "/extreme-tours"
+      link: "/extreme-tours",
     },
     {
       image: imageSpetial3,
       title: "Где кататься этой зимой",
       buttonText: "Подробнее",
-      link: "/winter-skiing"
+      link: "/winter-skiing",
     },
   ];
 
@@ -35,24 +35,25 @@ const HomePage: React.FC = () => {
     {
       image: imageService1,
       title: "ПРЕМИАЛЬНОЕ ОБСЛУЖИВАНИЕ",
-      link: "/premium"
+      link: "/premium",
     },
     {
       image: imageService2,
       title: "УСЛУГИ ГИДОВ",
-      link: "/guides"
+      link: "/guides",
     },
     {
       image: imageService3,
       title: "НАШИ БАССЕЙНЫ",
-      link: "/pools"
+      link: "/pools",
     },
     {
       image: imageService4,
       title: "ПРОКАТ ТРАНСПОРТ",
-      link: "/bookingCars"
+      link: "/bookingCars",
     },
-  ]; git
+  ];
+  
 
   return (
     <div className={styles.body}>
@@ -65,7 +66,9 @@ const HomePage: React.FC = () => {
               <div className={styles.cardContent}>
                 <h2 className={styles.cardTitle}>{card.title}</h2>
                 <Link to={card.link}>
-                  <button className={styles.cardButton}>{card.buttonText}</button>
+                  <button className={styles.cardButton}>
+                    {card.buttonText}
+                  </button>
                 </Link>
               </div>
             </div>
@@ -76,7 +79,11 @@ const HomePage: React.FC = () => {
         <h2 className={styles.servicesTitle}>УСЛУГИ</h2>
         <div className={styles.servicesContainer}>
           {services.map((service, index) => (
-            <Link to={service.link} key={index} className={styles.serviceCardLink}>
+            <Link
+              to={service.link}
+              key={index}
+              className={styles.serviceCardLink}
+            >
               <div className={styles.serviceCard}>
                 <img
                   src={service.image}
