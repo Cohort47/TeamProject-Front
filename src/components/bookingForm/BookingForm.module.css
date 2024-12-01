@@ -1,0 +1,98 @@
+.container {
+  max-width: 1160px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-family: "Arial", sans-serif;
+}
+
+.styledTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.styledTable th,
+.styledTable td {
+  text-align: left;
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+}
+
+.styledTable th {
+  background-color: #f9f9f9;
+  font-size: 16px;
+  color: #444;
+}
+
+.styledTable td {
+  font-size: 14px;
+}
+
+.styledTable tr td:first-child {
+  font-weight: bold;
+  color: #333;
+}
+
+.styledTable tr:hover {
+  background-color: #f3f3f3;
+}
+
+.description {
+  margin: 10px 0 0;
+  padding: 10px;
+  border: 1px solid #63fdc2;
+  border-radius: 20px;
+  background-color: #f6fff8;
+  color: #333;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+input {
+  width: 50px;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.summary {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.summary p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.totalSummary {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.bookNow {
+  margin-top: 10px;
+  padding: 10px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f6fff8;
+  color: #63fdc2;
+  border: 2px solid #63fdc2;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.bookNow:hover {
+  background-color: #63fdc2;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
