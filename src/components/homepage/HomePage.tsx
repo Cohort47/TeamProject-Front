@@ -52,7 +52,7 @@ const HomePage: React.FC = () => {
       title: "ПРОКАТ ТРАНСПОРТ",
       link: "/bookingCars"
     },
-  ];
+  ]; git
 
   return (
     <div className={styles.body}>
