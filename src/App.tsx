@@ -6,8 +6,6 @@ import AboutUs from "./components/aboutUs/AboutUs";
 import HomePage from "./components/homepage/HomePage";
 import TourList from "./components/tours/TourList";
 
-
-
 import LoginPage from "./components/login/LoginPage";
 import RegistrationForm from "./components/registrationForm/RegistrationForm";
 import PasswordRecoveryForm from "./components/passwordRecoveryForm/PasswordRecoveryForm";
@@ -16,10 +14,10 @@ import Premium from "./components/premium/Premium";
 import NotFoundPage from "./components/notFoundPage/NotFoundPage";
 import Guides from "./components/guides/Guides";
 import BookingCars from "./components/bookCars/BookingCars";
-
+import Advantages from "./components/advantages/Advantage";
 
 const App: React.FC = () => {
-  return ( 
+  return (
     <Router>
       <Header />
       <Routes>
@@ -34,7 +32,7 @@ const App: React.FC = () => {
         <Route path="/*" element={<NotFoundPage />} />
         <Route path="/guides" element={<Guides />} />
         <Route path="/bookingCars" element={<BookingCars />} />
-
+        <Route path="/bookingCars" element={<Advantages />} />
       </Routes>
       <Footer />
     </Router>
