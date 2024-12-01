@@ -9,7 +9,7 @@ const Header: React.FC = () => {
     { text: "Услуги", link: "services" },
     { text: "Преимущества", link: "advantages" },
     { text: "Туры", link: "tours" },
-    { text: "Отели", link: "hotels" },
+    // { text: "Отели", link: "hotels" },
     { text: "Контакты", link: "contacts" },
   ];
 

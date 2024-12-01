@@ -11,8 +11,20 @@
 }
 
 .titleSection {
-  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
   margin-bottom: 20px;
+}
+
+.leftSection {
+  display: flex;
+  justify-content: flex-start; 
+}
+
+.rightSection {
+  display: flex;
+  justify-content: flex-end; 
 }
 
 .title {

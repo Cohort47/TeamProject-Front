@@ -30,6 +30,7 @@
 .logoLink {
   display: flex;
   align-items: center;
+  cursor: default;
 }
 
 .headerLogo {
@@ -50,6 +51,7 @@
   color: #333;
   text-decoration: none;
 }
+
 
 .headerBottom {
   width: 100%;
@@ -87,7 +89,8 @@
 }
 
 .headerLink:hover {
-  color: #ff6600;
+  border-bottom: 2px solid #ffffff;
+  text-decoration: none;
 }
 
 .buttonContainer {
@@ -107,8 +110,3 @@
   font-size: 14px;
 }
 
-.headerBtnLink:hover,
-.headerBtnCall:hover {
-  border-color: #ff6600;
-  color: #ff6600;
-}

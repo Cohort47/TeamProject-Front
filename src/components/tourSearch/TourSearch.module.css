@@ -42,7 +42,7 @@
 }
 
 .searchField label {
-  font-size: 12px;
+  font-size: 14px;
   color: #333;
   margin-bottom: 5px;
   text-align: left;
@@ -61,8 +61,8 @@
 .searchButton {
   padding: 14px 30px;
   font-size: 14px;
-  color: #cc9933;
-  border: 1px solid #cc9933;
+  color: #000000;
+  border: 1px solid #63FDC2;
   border-radius: 15px;
   background: none;
   cursor: pointer;
@@ -71,7 +71,7 @@
 }
 
 .searchButton:hover {
-  background-color: #f2e2cc;
+  background-color: #a5f8d8;
 }
 
 @media (max-width: 768px) {
