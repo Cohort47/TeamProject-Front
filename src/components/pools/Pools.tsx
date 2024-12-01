@@ -8,6 +8,7 @@ const Pools: React.FC = () => {
       <h2 className={styles.title}>Наши бассейны</h2>
       <div className={styles.photoContainer}>
         <img src={poolPhoto} alt="Pools" className={styles.poolPhoto} />
+        
       </div>
       <div className={styles.textContainer}>
         <p>
