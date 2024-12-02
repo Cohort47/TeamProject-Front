@@ -1,4 +1,4 @@
-.body{
+.body {
   max-width: 1200px;
 }
 
@@ -7,6 +7,9 @@
   font-weight: bold;
   color: #26434d;
   margin-left: 20px;
+}
+.serviceCardLink {
+  text-decoration: none; /* Убирает подчеркивание текста */
 }
 
 .cardContainer {
@@ -20,7 +23,7 @@
   grid-template-areas:
     "card1 card2"
     "card3 card3"; /* Третья карточка занимает всю ширину */
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 /* Определение областей для карточек */
