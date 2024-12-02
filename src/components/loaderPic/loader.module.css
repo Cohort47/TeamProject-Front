@@ -1,0 +1,56 @@
+.loader {
+  width: 98px;
+  height: 98px;
+  border: 5px solid transparent; 
+  border-top-color: rgb(205, 157, 225); 
+  border-right-color: rgb(255, 123, 145); 
+  border-bottom-color: rgb(66, 97, 155);
+  border-left-color: rgb(95, 189, 123); 
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 0.7s linear infinite, gradient 1.4s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient {
+  0%, 100% {
+    border-top-color: rgb(205, 157, 225);
+    border-right-color: rgb(255, 123, 145);
+    border-bottom-color: rgb(66, 97, 155);
+    border-left-color: rgb(95, 189, 123);
+  }
+
+  25% {
+    border-top-color: rgb(255, 123, 145);
+    border-right-color: rgb(66, 97, 155);
+    border-bottom-color: rgb(95, 189, 123);
+    border-left-color: rgb(205, 157, 225);
+  }
+
+  50% {
+    border-top-color: rgb(66, 97, 155);
+    border-right-color: rgb(95, 189, 123);
+    border-bottom-color: rgb(205, 157, 225);
+    border-left-color: rgb(255, 123, 145);
+  }
+
+  75% {
+    border-top-color: rgb(95, 189, 123);
+    border-right-color: rgb(205, 157, 225);
+    border-bottom-color: rgb(255, 123, 145);
+    border-left-color: rgb(66, 97, 155);
+  }
+}
