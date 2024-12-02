@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import AboutUs from "./components/aboutUs/AboutUs";
 import HomePage from "./components/homepage/HomePage";
 import TourList from "./components/tours/TourList";
-
 import LoginPage from "./components/login/LoginPage";
 import RegistrationForm from "./components/registrationForm/RegistrationForm";
 import PasswordRecoveryForm from "./components/passwordRecoveryForm/PasswordRecoveryForm";
@@ -16,29 +15,40 @@ import Guides from "./components/guides/Guides";
 import BookingCars from "./components/bookCars/BookingCars";
 import Advantages from "./components/advantages/Advantage";
 import OurOffices from "./components/ourOffices/OurOffices";
+import Loader from "./components/loaderPic/Loader";
 
 const App: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1500); 
+  }, []);
+
   return (
     <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/registration" element={<RegistrationForm />} />
-        <Route path="/password-recovery" element={<PasswordRecoveryForm />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/tours" element={<TourList />} />
-        <Route path="/pools" element={<Pools />} />
-        <Route path="/premium" element={<Premium />} />
-        <Route path="/*" element={<NotFoundPage />} />
-        <Route path="/guides" element={<Guides />} />
-        <Route path="/bookingCars" element={<BookingCars />} />
-        <Route path="/bookingCars" element={<Advantages />} />
-        <Route path="/our-Offices" element={<OurOffices />} />
-
-
-      </Routes>
-      <Footer />
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/registration" element={<RegistrationForm />} />
+            <Route path="/password-recovery" element={<PasswordRecoveryForm />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/tours" element={<TourList />} />
+            <Route path="/pools" element={<Pools />} />
+            <Route path="/premium" element={<Premium />} />
+            <Route path="/*" element={<NotFoundPage />} />
+            <Route path="/guides" element={<Guides />} />
+            <Route path="/bookingCars" element={<BookingCars />} />
+            <Route path="/bookingCars" element={<Advantages />} />
+            <Route path="/our-Offices" element={<OurOffices />} />
+          </Routes>
+          <Footer />
+        </>
+      )}
     </Router>
   );
 };
