@@ -9,6 +9,7 @@ import imageService2 from "./photo/service_2.jpg";
 import imageService3 from "./photo/service_3.jpg";
 import imageService4 from "./photo/service_4.jpg";
 import Advantages from "../advantages/Advantage";
+import OurOffices from "../ourOffices/OurOffices";
 
 const HomePage: React.FC = () => {
   const cards = [
@@ -97,6 +98,7 @@ const HomePage: React.FC = () => {
         </div>
       </div>
       <Advantages />
+      <OurOffices />
     </div>
   );
 };

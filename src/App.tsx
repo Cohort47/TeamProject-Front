@@ -15,6 +15,7 @@ import NotFoundPage from "./components/notFoundPage/NotFoundPage";
 import Guides from "./components/guides/Guides";
 import BookingCars from "./components/bookCars/BookingCars";
 import Advantages from "./components/advantages/Advantage";
+import OurOffices from "./components/ourOffices/OurOffices";
 
 const App: React.FC = () => {
   return (
@@ -33,6 +34,9 @@ const App: React.FC = () => {
         <Route path="/guides" element={<Guides />} />
         <Route path="/bookingCars" element={<BookingCars />} />
         <Route path="/bookingCars" element={<Advantages />} />
+        <Route path="/our-Offices" element={<OurOffices />} />
+
+
       </Routes>
       <Footer />
     </Router>
