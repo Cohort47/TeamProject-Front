@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import logo from "./berlin_small.png";
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
   const menuItems = [
     { text: "Главная", link: "/" },
     { text: "О нас", link: "about-us" },
@@ -12,6 +14,16 @@ const Header: React.FC = () => {
     { text: "Отели", link: "hotels" },
     { text: "Контакты", link: "contacts" },
   ];
+
+  const isAuthenticated = false; // Замените это на вашу настоящую логику авторизации
+
+  const handlePersonalAccountClick = () => {
+    if (isAuthenticated) {
+      navigate("/account-management"); // Перенаправление на управление аккаунтом, если авторизован
+    } else {
+      navigate("/login"); // Перенаправление на форму логина, если не авторизован
+    }
+  };
 
   return (
     <header className={styles.header}>
@@ -27,7 +39,11 @@ const Header: React.FC = () => {
             </a>
           </div>
           <div className={styles.rightSection}>
-            <a href="#" className={styles.personalAccount}>
+            <a
+              href="#"
+              className={styles.personalAccount}
+              onClick={handlePersonalAccountClick}
+            >
               Личный кабинет
             </a>
           </div>
