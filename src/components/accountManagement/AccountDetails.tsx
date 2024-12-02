@@ -11,7 +11,7 @@ interface AccountData {
   address: string;
 }
 
-const AccountManagement: React.FC = () => {
+const AccountDetails: React.FC = () => {
   const [data, setData] = useState<AccountData>({
     name: "Алексей Самойлов",
     email: "a.samoylov@gmail.com",
@@ -108,4 +108,4 @@ const getFieldName = (key: string): string => {
   return fieldNames[key] || key;
 };
 
-export default AccountManagement;
+export default AccountDetails;

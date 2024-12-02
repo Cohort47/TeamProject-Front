@@ -1,15 +1,14 @@
 .advantagesContainer {
-  padding: 20px;
-  border: 2px solid #40e0d0; 
-  border-radius: 10px;
-  background-color: #d5cfcf7a; 
+  margin-top: 50px;
+  margin-bottom: 50px;
+
 }
 
 .title {
   font-size: 24px;
   margin-bottom: 20px;
-  text-align: left; 
   margin-left: 20px;
+  color: #26434d;
 }
 
 .advantagesList {
