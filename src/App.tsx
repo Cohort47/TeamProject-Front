@@ -16,6 +16,8 @@ import BookingCars from "./components/bookCars/BookingCars";
 import Advantages from "./components/advantages/Advantage";
 import OurOffices from "./components/ourOffices/OurOffices";
 import Loader from "./components/loaderPic/Loader";
+import TourDetailsPage from "./components/tourDetailsPage/TourDetailsPage";
+
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -32,7 +34,7 @@ const App: React.FC = () => {
         <>
           <Header />
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route index element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/registration" element={<RegistrationForm />} />
             <Route path="/password-recovery" element={<PasswordRecoveryForm />} />
@@ -45,6 +47,8 @@ const App: React.FC = () => {
             <Route path="/bookingCars" element={<BookingCars />} />
             <Route path="/bookingCars" element={<Advantages />} />
             <Route path="/our-Offices" element={<OurOffices />} />
+            <Route path="/tours" element={<TourList />} />
+            <Route path="/tour/:id" element={<TourDetailsPage/>} />
           </Routes>
           <Footer />
         </>

@@ -28,7 +28,7 @@ const HomePage: React.FC = () => {
     },
     {
       image: imageSpetial3,
-      title: "Где кататься этой зимой",
+      title: "Горнолыжные курорты",
       buttonText: "Подробнее",
       link: "/winter-skiing",
     },
