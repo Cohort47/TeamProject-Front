@@ -61,7 +61,7 @@ const Advantages: React.FC = () => {
   ];
 
   return (
-    
+    <section className={styles.advantagesContainer} id="advantages">
     <div className={styles.advantagesContainer}>
       <h2 className={styles.title}>ПРЕИМУЩЕСТВА</h2>
       <div className={styles.advantagesList}>
@@ -77,6 +77,7 @@ const Advantages: React.FC = () => {
         ))}
       </div>
     </div>
+    </section>
   );
 };
 
