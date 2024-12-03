@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-scroll';
 import styles from "./Header.module.css";
 import logo from "./berlin_small.png";
 
@@ -55,15 +54,9 @@ const Header: React.FC = () => {
             <ul className={styles.headerList}>
               {menuItems.map((item, index) => (
                 <li className={styles.headerListItem} key={index}>
-                  {item.link.startsWith('/') ? (
-                    <a href={`${item.link}`} className={styles.headerLink}>
-                      {item.text.toUpperCase()}
-                    </a>
-                  ) : (
-                    <Link to={item.link} smooth={true} duration={500} className={styles.headerLink}>
-                      {item.text.toUpperCase()}
-                    </Link>
-                  )}
+                  <a href={`${item.link}`} className={styles.headerLink}>
+                    {item.text.toUpperCase()}
+                  </a>
                 </li>
               ))}
             </ul>
