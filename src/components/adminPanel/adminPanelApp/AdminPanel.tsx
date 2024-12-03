@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Sidebar from "./Sidebar";
-import UserTable from "./UserTable";
-import ToursCatalog from "./ToursCatalog";
-import HistoryTable from "./HistoryTable";
-import TransactionTable from "./TransactionTable";
+import Sidebar from "../sidebar/Sidebar";
+import UserTable from "../userTable/UserTable";
+import ToursCatalog from "../toursCatalog/ToursCatalog";
+import HistoryTable from "../historyTable/HistoryTable";
+import TransactionTable from "../transactionTable/TransactionTable";
 import styles from "./AdminPanel.module.css";
 
 const AdminPanel: React.FC = () => {
@@ -17,8 +17,8 @@ const AdminPanel: React.FC = () => {
         return <HistoryTable />;
       case "transactionsTours":
         return <TransactionTable />;
-        case "toursCatalog":
-            return <ToursCatalog />;
+      case "toursCatalog":
+        return <ToursCatalog />;
       default:
         return <UserTable />;
     }
@@ -29,13 +29,7 @@ const AdminPanel: React.FC = () => {
       <h1 className={styles.title}>Панель администратора</h1>
       <div className={styles.panel}>
         <Sidebar setActiveTab={setActiveTab} />
-        <div className={styles.content}>
-          {renderContent()}
-          <div className={styles.actions}>
-            <button className={styles.blockBtn}>Заблокировать</button>
-            <button className={styles.saveBtn}>Сохранить</button>
-          </div>
-        </div>
+        <div className={styles.content}>{renderContent()}</div>
       </div>
     </div>
   );

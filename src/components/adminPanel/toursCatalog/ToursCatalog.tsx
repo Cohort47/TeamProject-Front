@@ -8,6 +8,8 @@ type Tour = {
   duration: number;
   price: string;
   images: string[];
+  startDate?: string;
+  endDate?: string;
 };
 
 const ToursCatalog: React.FC = () => {
@@ -22,6 +24,8 @@ const ToursCatalog: React.FC = () => {
         "https://media.istockphoto.com/id/1364624347/de/foto/junge-frau-beim-schnorcheln-neben-einer-gr%C3%BCnen-schildkr%C3%B6te-in-einem-klaren-blauen-wasser.jpg?s=2048x2048&w=is&k=20&c=BruGqjmOvoWIRk4K6VCQMbId4dZCju2Fbp8ELosVw2c=",
         "https://media.istockphoto.com/id/1364624347/de/foto/junge-frau-beim-schnorcheln-neben-einer-gr%C3%BCnen-schildkr%C3%B6te-in-einem-klaren-blauen-wasser.jpg?s=2048x2048&w=is&k=20&c=BruGqjmOvoWIRk4K6VCQMbId4dZCju2Fbp8ELosVw2c=",
       ],
+      startDate: "2024-01-01",
+      endDate: "2024-01-08",
     },
     {
       id: 2,
@@ -34,6 +38,8 @@ const ToursCatalog: React.FC = () => {
         "https://media.istockphoto.com/id/624215532/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%BC%D0%BE%D1%80%D1%81%D0%BA%D0%BE%D0%B9-%D0%BF%D0%B5%D1%81%D1%87%D0%B0%D0%BD%D1%8B%D0%B9-%D0%BF%D0%BB%D1%8F%D0%B6-%D0%BD%D0%B0-%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B2%D0%B5-%D0%BA%D0%B0%D0%BD%D0%B8-%D0%BA%D1%80%D0%B0%D1%81%D0%B8%D0%B2%D1%8B%D0%B9-%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B2-%D0%BC%D0%B0%D0%BB%D1%8C%D0%B4%D0%B8%D0%B2%D1%8B-%D0%B8%D1%8E%D0%BD%D1%8C-2016.jpg?s=2048x2048&w=is&k=20&c=OsuHPVSLBb3iT_DWFLb3BwqGqwsG7wUHXArrP-vhz4o=",
         "https://media.istockphoto.com/id/2153741067/de/foto/boardwalk-into-tropical-paradise-island.jpg?s=2048x2048&w=is&k=20&c=t1ns6T2wvkqNst4U8wh92eOd-emY1mG2nU4xoTt4_yo=",
       ],
+      startDate: "2024-01-01",
+      endDate: "2024-01-08",
     },
   ]);
 
@@ -102,6 +108,9 @@ const ToursCatalog: React.FC = () => {
             <p>{tour.description}</p>
             <p>Продолжительность: {tour.duration} дней</p>
             <p>Цена: {tour.price}€</p>
+            <p>Дата начала: {tour.startDate}</p>
+            <p>Дата окончания: {tour.endDate}</p>
+
             <div className={styles.images}>
               {tour.images.map((image, index) => (
                 <img
@@ -171,6 +180,31 @@ const ToursCatalog: React.FC = () => {
                 setEditingTour({
                   ...editingTour,
                   price: e.target.value.replace(/[^0-9.]/g, ""),
+                })
+              }
+              className={styles.input}
+            />
+
+            <input
+              type="date"
+              placeholder="Дата начала"
+              value={editingTour.startDate}
+              onChange={(e) =>
+                setEditingTour({
+                  ...editingTour,
+                  startDate: e.target.value,
+                })
+              }
+              className={styles.input}
+            />
+            <input
+              type="date"
+              placeholder="Дата окончания"
+              value={editingTour.endDate}
+              onChange={(e) =>
+                setEditingTour({
+                  ...editingTour,
+                  endDate: e.target.value,
                 })
               }
               className={styles.input}

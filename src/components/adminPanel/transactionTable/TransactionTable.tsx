@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Table.module.css";
+import styles from "../tableCss/Table.module.css";
 
 const TransactionTable: React.FC = () => {
   const transactionData = [
@@ -78,7 +78,8 @@ const TransactionTable: React.FC = () => {
   ];
 
   return (
-    <div>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Транзакции туров</h2>
       <table className={styles.table}>
         <thead>
           <tr>
@@ -89,7 +90,7 @@ const TransactionTable: React.FC = () => {
             <th>Статус</th>
             <th>Дата платежа</th>
             <th>Общая цена</th>
-            <th>Действие</th>
+            {/* <th>Действие</th> */}
           </tr>
         </thead>
         <tbody>
@@ -102,9 +103,9 @@ const TransactionTable: React.FC = () => {
               <td>{item.status}</td>
               <td>{item.paymentDate}</td>
               <td>{item.totalPrice}</td>
-              <td>
+              {/* <td>
                 <button className={styles.editBtn}>Изменить</button>
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>

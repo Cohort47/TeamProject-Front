@@ -1,6 +1,6 @@
 .toursCatalog {
   padding: 20px;
-  background: #f9f9f9;
+  background: #fff;
   border-radius: 10px;
 }
 
@@ -59,6 +59,10 @@
   margin-right: 5px;
 }
 
+.editBtn:hover {
+  background-color: #0056b3;
+}
+
 .deleteBtn {
   background: #dc3545;
 }
@@ -91,6 +95,10 @@
   margin-top: 10px;
 }
 
+.saveBtn:hover {
+  background-color: #0056b3;
+}
+
 .cancelBtn {
   background-color: #dc3545;
   color: white;
@@ -99,6 +107,10 @@
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+}
+
+.cancelBtn:hover {
+  background-color: #c82333;
 }
 
 .modalOverlay {
@@ -135,16 +147,18 @@
 }
 
 .addBtn {
-  background-color: #28a745;
+  background-color: #007bff;
   color: white;
-  padding: 10px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  float: right;
+  margin-top: 10px;
 }
 
 .addBtn:hover {
-  background-color: #218838;
+  background-color: #0056b3;
 }
 
 .deleteBtn {
