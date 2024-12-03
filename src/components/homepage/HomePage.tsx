@@ -11,7 +11,6 @@ import imageService4 from "./photo/service_4.jpg";
 import Advantages from "../advantages/Advantage";
 import OurOffices from "../ourOffices/OurOffices";
 
-
 const HomePage: React.FC = () => {
   const cards = [
     {
@@ -77,7 +76,7 @@ const HomePage: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className={styles.services}>
+      <div id="services" className={styles.services}>
         <h2 className={styles.servicesTitle}>УСЛУГИ</h2>
         <div className={styles.servicesContainer}>
           {services.map((service, index) => (
@@ -98,8 +97,12 @@ const HomePage: React.FC = () => {
           ))}
         </div>
       </div>
-      <Advantages />
-      <OurOffices />
+      <div id="advantages">
+        <Advantages />
+      </div>
+      <div id="contacts">
+        <OurOffices />
+      </div>
     </div>
   );
 };
