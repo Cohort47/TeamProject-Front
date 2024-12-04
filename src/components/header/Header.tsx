@@ -1,17 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from 'react-scroll';
+import { useNavigate, Link as RouterLink, useLocation } from "react-router-dom"; // Импортируем useLocation для определения текущего маршрута
+import { Link as ScrollLink } from 'react-scroll'; // Импортируем Link как ScrollLink для прокрутки
 import styles from "./Header.module.css";
 import logo from "./berlin_small.png";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation(); // Получаем текущий маршрут
   const menuItems = [
     { text: "Главная", link: "/" },
-    { text: "О нас", link: "about-us" },
+    { text: "О нас", link: "/about-us" },
     { text: "Услуги", link: "services" },
     { text: "Преимущества", link: "advantages" },
-    { text: "Туры", link: "tours" },
+    { text: "Туры", link: "/tours" },
     // { text: "Отели", link: "hotels" },
     { text: "Контакты", link: "contacts" },
   ];
@@ -55,14 +56,14 @@ const Header: React.FC = () => {
             <ul className={styles.headerList}>
               {menuItems.map((item, index) => (
                 <li className={styles.headerListItem} key={index}>
-                  {item.link.startsWith('/') ? (
-                    <a href={`${item.link}`} className={styles.headerLink}>
+                  {location.pathname === "/" && !item.link.startsWith('/') ? (
+                    <ScrollLink to={item.link} smooth={true} duration={500} className={styles.headerLink}>
                       {item.text.toUpperCase()}
-                    </a>
+                    </ScrollLink>
                   ) : (
-                    <Link to={item.link} smooth={true} duration={500} className={styles.headerLink}>
+                    <RouterLink to={`${item.link}`} className={styles.headerLink}>
                       {item.text.toUpperCase()}
-                    </Link>
+                    </RouterLink>
                   )}
                 </li>
               ))}
