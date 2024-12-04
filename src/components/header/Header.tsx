@@ -1,30 +1,28 @@
 import React from "react";
-import { useNavigate, Link as RouterLink, useLocation } from "react-router-dom"; // Импортируем useLocation для определения текущего маршрута
-import { Link as ScrollLink } from 'react-scroll'; // Импортируем Link как ScrollLink для прокрутки
-
+import { useNavigate, Link as RouterLink, useLocation } from "react-router-dom";
+import { Link as ScrollLink } from 'react-scroll';
 import styles from "./Header.module.css";
 import logo from "./berlin_small.png";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // Получаем текущий маршрут
+  const location = useLocation();
   const menuItems = [
     { text: "Главная", link: "/" },
     { text: "О нас", link: "/about-us" },
     { text: "Услуги", link: "services" },
     { text: "Преимущества", link: "advantages" },
     { text: "Туры", link: "/tours" },
-    // { text: "Отели", link: "hotels" },
     { text: "Контакты", link: "contacts" },
   ];
 
-  const isAuthenticated = false; // Замените это на вашу настоящую логику авторизации
+  const isAuthenticated = false;
 
   const handlePersonalAccountClick = () => {
     if (isAuthenticated) {
-      navigate("/account-management"); // Перенаправление на управление аккаунтом, если авторизован
+      navigate("/account-management");
     } else {
-      navigate("/login"); // Перенаправление на форму логина, если не авторизован
+      navigate("/login");
     }
   };
 
@@ -34,11 +32,7 @@ const Header: React.FC = () => {
         <div className={styles.headerTop}>
           <div className={styles.leftSection}>
             <a href="#" className={styles.logoLink}>
-              <img
-                src={logo}
-                className={styles.headerLogo}
-                alt="Travel Agency Logo"
-              />
+              <img src={logo} className={styles.headerLogo} alt="Travel Agency Logo" />
             </a>
           </div>
           <div className={styles.rightSection}>
@@ -62,11 +56,13 @@ const Header: React.FC = () => {
                       {item.text.toUpperCase()}
                     </ScrollLink>
                   ) : (
-                    <RouterLink to={`${item.link}`} className={styles.headerLink}>
+                    <RouterLink
+                      to={item.link.startsWith('/') ? item.link : `/?scrollTo=${item.link}`}
+                      className={styles.headerLink}
+                    >
                       {item.text.toUpperCase()}
                     </RouterLink>
                   )}
-
                 </li>
               ))}
             </ul>
