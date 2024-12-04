@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom"; // Импортируем Link для перехода по маршрутам
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./homepage.module.css";
 import imageSpetial1 from "./photo/1.jpg";
 import imageSpetial2 from "./photo/2.jpg";
@@ -12,6 +12,19 @@ import Advantages from "../advantages/Advantage";
 import OurOffices from "../ourOffices/OurOffices";
 
 const HomePage: React.FC = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const scrollTo = query.get("scrollTo");
+    if (scrollTo) {
+      const element = document.getElementById(scrollTo);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+
   const cards = [
     {
       image: imageSpetial1,
@@ -108,4 +121,3 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
- 
