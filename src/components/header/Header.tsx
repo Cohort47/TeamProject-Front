@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, Link as RouterLink, useLocation } from "react-router-dom"; // Импортируем useLocation для определения текущего маршрута
 import { Link as ScrollLink } from 'react-scroll'; // Импортируем Link как ScrollLink для прокрутки
+
 import styles from "./Header.module.css";
 import logo from "./berlin_small.png";
 
@@ -65,6 +66,7 @@ const Header: React.FC = () => {
                       {item.text.toUpperCase()}
                     </RouterLink>
                   )}
+
                 </li>
               ))}
             </ul>
