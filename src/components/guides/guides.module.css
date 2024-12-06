@@ -1,0 +1,45 @@
+.guides {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 38px;
+  font-weight: bold;
+  margin: 5px 0;
+  color: #26434d;
+  text-align: center;
+}
+
+
+.photoContainer {
+  width: 80%;
+  max-width: 1140px;
+  margin-right: 0px;
+  text-align: center;
+}
+
+.guidePhoto {
+  width: 100%;
+  border-radius: 10px;
+}
+.textContainer {
+  background-color: #ffffff;
+  color: #333333;
+  width: 80%;
+  max-width: 1200px;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 50px;
+  border-radius: 20px;
+  text-align: left;
+}
+.textContainer ul {
+  padding-left: 20px;
+}
+
+.textContainer li {
+  margin-bottom: 10px;
+}
