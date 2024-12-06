@@ -1,5 +1,5 @@
 interface Tour {
-  price: string;
+  price: number;
   rating: number;
 }
 
@@ -17,15 +17,9 @@ export const sortTours = (tours: Tour[], criteria: SortCriteria): Tour[] => {
       case "rating_asc":
         return a.rating - b.rating;
       case "price_desc":
-        return (
-          parseInt(b.price.replace(/\s+/g, "")) -
-          parseInt(a.price.replace(/\s+/g, ""))
-        ); // Цена по убыванию
+        return  b.price - a.price; // Цена по убыванию
       case "price_asc":
-        return (
-          parseInt(a.price.replace(/\s+/g, "")) -
-          parseInt(b.price.replace(/\s+/g, ""))
-        ); // Цена по возрастанию
+        return a.price - b.price;// Цена по возрастанию
       default:
         return 0;
     }

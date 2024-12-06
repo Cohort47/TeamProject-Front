@@ -15,7 +15,7 @@ import Guides from "./components/guides/Guides";
 import BookingCars from "./components/bookCars/BookingCars";
 import Advantages from "./components/advantages/Advantage";
 import OurOffices from "./components/ourOffices/OurOffices";
-import Loader from "./components/loaderPic/Loader";
+import Loader from "./components/loader/Loader";
 import TourDetailsPage from "./components/tourDetailsPage/TourDetailsPage";
 
 
@@ -49,6 +49,7 @@ const App: React.FC = () => {
             <Route path="/contacts"  element={<OurOffices />} />
             <Route path="/tours" element={<TourList />} />
             <Route path="/tour/:id" element={<TourDetailsPage/>} />
+            <Route path="/profile" element={<TourDetailsPage/>}/>
             
           </Routes>  
           <Footer />
