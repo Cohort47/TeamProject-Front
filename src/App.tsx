@@ -15,7 +15,7 @@ import Guides from "./components/guides/Guides";
 import BookingCars from "./components/bookCars/BookingCars";
 import Advantages from "./components/advantages/Advantage";
 import OurOffices from "./components/ourOffices/OurOffices";
-import Loader from "./components/loaderPic/Loader";
+import Loader from "./components/loader/Loader";
 import TourDetailsPage from "./components/tourDetailsPage/TourDetailsPage";
 import AccountManagement from "./components/personalAccountManagement/AccountManagement";
 import YourTours from "./components/personalAccountTours/YourTours";
@@ -61,6 +61,7 @@ const App: React.FC = () => {
                 throw new Error("Function not implemented.");
               } } />} />
             <Route path="/tour-card" element={<TourCard price={""} rating={0} />} />
+
             
           </Routes>
           <Footer />

@@ -90,7 +90,7 @@ const TourDetailsPage: React.FC = () => {
             <img
               key={index}
               src={image}
-              alt={`Small Image ${index + 1}`}
+              alt={`Small ${index + 1}`}
               className={styles.smallImage}
               onClick={() => setMainImage(image)}
             />

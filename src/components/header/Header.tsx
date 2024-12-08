@@ -31,18 +31,24 @@ const Header: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.headerTop}>
           <div className={styles.leftSection}>
-            <a href="#" className={styles.logoLink}>
-              <img src={logo} className={styles.headerLogo} alt="Travel Agency Logo" />
-            </a>
+
+            <div className={styles.logoLink}>
+              <img
+                src={logo}
+                className={styles.headerLogo}
+                alt="Travel Agency Logo"
+              />
+            </div>
+
           </div>
           <div className={styles.rightSection}>
-            <a
-              href="#"
+            <Link
+              to="/profile"
               className={styles.personalAccount}
               onClick={handlePersonalAccountClick}
             >
               Личный кабинет
-            </a>
+            </Link>
           </div>
         </div>
 
