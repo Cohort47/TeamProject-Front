@@ -17,13 +17,18 @@ import Advantages from "./components/advantages/Advantage";
 import OurOffices from "./components/ourOffices/OurOffices";
 import Loader from "./components/loader/Loader";
 import TourDetailsPage from "./components/tourDetailsPage/TourDetailsPage";
-
+import AccountManagement from "./components/personalAccountManagement/AccountManagement";
+import YourTours from "./components/personalAccountTours/YourTours";
+import TourSearch from "./components/tourSearch/TourSearch";
+import TourSortSection from "./components/tourSort/TourSortSection";
+import TourCard from "./components/tours/TourCard";
+import { SortCriteria } from "./components/tourSort/sortTours";
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1500); 
+    setTimeout(() => setLoading(false), 1500);
   }, []);
 
   return (
@@ -37,21 +42,28 @@ const App: React.FC = () => {
             <Route index element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/registration" element={<RegistrationForm />} />
-            <Route path="/password-recovery" element={<PasswordRecoveryForm />} />
+            <Route path="/password-recovery" element={<PasswordRecoveryForm />}/>
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/tours" element={<TourList />} />
             <Route path="/pools" element={<Pools />} />
             <Route path="/premium" element={<Premium />} />
             <Route path="/*" element={<NotFoundPage />} />
-            <Route path="/services" element={<Guides />} />
+            <Route path="/guides" element={<Guides />} />
             <Route path="/bookingCars" element={<BookingCars />} />
             <Route path="/advantages" element={<Advantages />} />
-            <Route path="/contacts"  element={<OurOffices />} />
+            <Route path="/contacts" element={<OurOffices />} />
             <Route path="/tours" element={<TourList />} />
-            <Route path="/tour/:id" element={<TourDetailsPage/>} />
-            <Route path="/profile" element={<TourDetailsPage/>}/>
+            <Route path="/tour/:id" element={<TourDetailsPage />} />
+            <Route path="/search-tour" element={<TourSearch />} />
+            <Route path="/your-tours" element={<YourTours />} />
+            <Route path="/account-management" element={<AccountManagement />} />
+            <Route path="/tour-sort-section" element={<TourSortSection onSortChange={function (criteria: SortCriteria): void {
+                throw new Error("Function not implemented.");
+              } } />} />
+            <Route path="/tour-card" element={<TourCard price={""} rating={0} />} />
+
             
-          </Routes>  
+          </Routes>
           <Footer />
         </>
       )}
@@ -59,5 +71,5 @@ const App: React.FC = () => {
   );
 };
 
-
 export default App;
+
