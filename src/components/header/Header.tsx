@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, Link as RouterLink, useLocation } from "react-router-dom";
+import { useNavigate, Link as RouterLink, useLocation, Link } from "react-router-dom";
 import { Link as ScrollLink } from 'react-scroll';
 import styles from "./Header.module.css";
 import logo from "./berlin_small.png";
