@@ -60,7 +60,6 @@ const App: React.FC = () => {
             <Route path="/tour-sort-section" element={<TourSortSection onSortChange={function (criteria: SortCriteria): void {
                 throw new Error("Function not implemented.");
               } } />} />
-            <Route path="/tour-card" element={<TourCard price={""} rating={0} />} />
 
             
           </Routes>
