@@ -86,6 +86,7 @@
 .headerLink {
   color: #ffffff;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .headerLink:hover {
