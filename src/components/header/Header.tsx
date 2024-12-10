@@ -77,6 +77,7 @@ const Header: React.FC = () => {
             <button className={styles.headerBtnLink}>Хочу тур</button>
             <button className={styles.headerBtnCall}>Обратный звонок</button>
           </div> */}
+          
         </div>
       </div>
     </header>
