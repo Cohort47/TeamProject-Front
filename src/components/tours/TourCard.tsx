@@ -11,11 +11,11 @@ interface TourCardProps {
   photoLinks: string[];
   country: string;
   city: string;
-  rating: number
+  rating: number;
 }
 
 const TourCard: React.FC<TourCardProps> = ({
-  id,             
+  id,
   title,
   price,
   duration,
@@ -26,14 +26,13 @@ const TourCard: React.FC<TourCardProps> = ({
 }) => {
   return (
     <div className={styles.tourCard}>
-      {/* Для картинки используем первое фото из photoLinks */}
       <img src={photoLinks[0]} alt={title} className={styles.image} />
       <div className={styles.content}>
         <div className={styles.priceRating}>
           <span className={styles.price}>{price} €</span>
           <span className={styles.rating}>{"★".repeat(rating)}</span>
         </div>
-        <h3 className={styles.name}>{title}</h3>
+        <h3 className={styles.name}>{title}, {duration} days</h3>
         <p className={styles.location}>{city}, {country}</p>
         <Link to={`/tour/${id}`}>
           <button className={styles.buttonRooms}>Детальная информация</button>

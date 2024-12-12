@@ -5,7 +5,7 @@ import TourSortSection from "../tourSort/TourSortSection";
 import { sortTours, SortCriteria } from "../tourSort/sortTours";
 import styles from "./TourList.module.css";
 import TourSearch from "../tourSearch/TourSearch";
-
+import Loader from "../loader/Loader";
 
 //Tours from bd
 interface Tour {
@@ -23,42 +23,99 @@ interface Tour {
   rating: 5;
 }
 
+interface Filter {
+  country: string;
+  city: string;
+  date: string;
+  days: number;
+  tourists: number;
+}
 
 const TourList: React.FC = () => {
   const [sortCriteria, setSortCriteria] = useState<SortCriteria>("rating_desc");
   const [visibleToursCount, setVisibleToursCount] = useState(8);
   const [tours, setTours] = useState<Tour[]>([]);
-  const [, setLoading] = useState<boolean>(true);
-  const [, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [err, setError] = useState<string | null>(null);
+  const [filters, setFilters] = useState<Filter>({
+    country: "",
+    city: "",
+    date: "",
+    days: 0,
+    tourists: 0,
+  });
 
-// Получаем туры с сервера, убрать коментарий после подключения бд 
-useEffect(() => {
-  setLoading(true);
-  axios
-    .get(`/api/tours`)
-    .then((response) => {
-      setTours(response.data);
-      setLoading(false);
-    })
-    .catch((err) => {
-      console.error("Ошибка при получении данных о турах:", err);
-      setError("Не удалось загрузить данные. Попробуйте позже.");
-      setLoading(false);
+  // Получаем туры с сервера, убрать коментарий после подключения бд
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(`/api/tours`)
+      .then((response) => {
+        setTours(response.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Ошибка при получении данных о турах:", err);
+        setError("Не удалось загрузить данные. Попробуйте позже.");
+        setLoading(false);
+      });
+  }, []);
+
+  if(err){
+    console.log(err);
+  }
+  if(loading){
+    return <Loader/>
+  }
+
+  //  Фильтрация туров
+  const filterTours = (tours: Tour[], filters: Filter) => {
+    return tours.filter((tour) => {
+      const matchesCountry =
+        !filters.country ||
+        tour.country.trim().toLowerCase() ===
+          filters.country.trim().toLowerCase();
+      const matchesCity =
+        !filters.city ||
+        tour.city.trim().toLowerCase() === filters.city.trim().toLowerCase();
+      const matchesDate =
+        !filters.date ||
+        (new Date(tour.startDate) <= new Date(filters.date) &&
+          new Date(tour.endDate) >= new Date(filters.date));
+      const matchesDuration = !filters.days || tour.duration >= filters.days;
+
+      console.log("Tour:", tour);
+      console.log("Country match:", matchesCountry);
+      console.log("City match:", matchesCity);
+      console.log("Date match:", matchesDate);
+      console.log("Duration match:", matchesDuration);
+
+      return matchesCountry && matchesCity && matchesDate && matchesDuration;
     });
-}, []);
+  };
 
-  const sortedTours = sortTours(tours, sortCriteria);
+  console.log(filterTours);
 
- // const visibleTours = sortedTours.slice(0, visibleToursCount);
+  const filteredTours = filterTours(tours, filters);
+  const sortedTours = sortTours(filteredTours, sortCriteria);
+  const visibleTours = filteredTours.slice(0, visibleToursCount);
+  console.log(filters);
+  console.log(tours);
+  console.log(filteredTours);
 
   const handleViewAllClick = () => {
     setVisibleToursCount((prevCount) =>
-      prevCount + 8 > tours.length ? tours.length : prevCount + 8);
+      prevCount + 8 > tours.length ? tours.length : prevCount + 8
+    );
+  };
+
+  const handleSearch = (newFilters: typeof filters) => {
+    setFilters(newFilters);
   };
 
   return (
     <>
-      <TourSearch />
+      <TourSearch onSearch={handleSearch} />
       <div className={styles.tourListContainer}>
         <div className={styles.titleSection}>
           <h2 className={styles.title}>ТУРЫ</h2>
@@ -66,29 +123,29 @@ useEffect(() => {
         </div>
 
         <div className={styles.tourGrid}>
-          {tours.map((tour) => (
-             <TourCard
-             id={tour.id}
-             title={tour.title}
-             price={tour.price}
-             duration={tour.duration}
-             photoLinks={tour.photoLinks}
-             country={tour.country}
-             city={tour.city}
-             rating={tour.rating} 
-           />
+          {visibleTours.map((tour) => (
+            <TourCard
+              key={tour.id}
+              id={tour.id}
+              title={tour.title}
+              price={tour.price}
+              duration={tour.duration}
+              photoLinks={tour.photoLinks}
+              country={tour.country}
+              city={tour.city}
+              rating={tour.rating}
+            />
           ))}
-
-          {visibleToursCount < sortedTours.length && (
-            <div className={styles.viewAllButtonContainer}>
+          <div className={styles.viewAllButtonContainer}>
+            {visibleToursCount < sortedTours.length && (
               <button
                 className={styles.viewAllButton}
                 onClick={handleViewAllClick}
               >
                 Больше вариантов
               </button>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </>
