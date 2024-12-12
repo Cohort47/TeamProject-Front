@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, Link as RouterLink, useLocation, Link } from "react-router-dom";
+import { useNavigate, Link as RouterLink, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from 'react-scroll';
 import styles from "./Header.module.css";
 import logo from "./berlin_small.png";
@@ -42,13 +42,13 @@ const Header: React.FC = () => {
 
           </div>
           <div className={styles.rightSection}>
-            <Link
+            <RouterLink
               to="/profile"
               className={styles.personalAccount}
               onClick={handlePersonalAccountClick}
             >
               Личный кабинет
-            </Link>
+            </RouterLink>
           </div>
         </div>
 
@@ -72,10 +72,6 @@ const Header: React.FC = () => {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className={styles.buttonContainer}>
-            <button className={styles.headerBtnLink}>Хочу тур</button>
-            <button className={styles.headerBtnCall}>Обратный звонок</button>
           </div>
         </div>
       </div>

@@ -19,10 +19,7 @@ import Loader from "./components/loader/Loader";
 import TourDetailsPage from "./components/tourDetailsPage/TourDetailsPage";
 import AccountManagement from "./components/personalAccountManagement/AccountManagement";
 import YourTours from "./components/personalAccountTours/YourTours";
-import TourSearch from "./components/tourSearch/TourSearch";
-import TourSortSection from "./components/tourSort/TourSortSection";
-import TourCard from "./components/tours/TourCard";
-import { SortCriteria } from "./components/tourSort/sortTours";
+
 
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -53,8 +50,7 @@ const App: React.FC = () => {
             <Route path="/advantages" element={<Advantages />} />
             <Route path="/contacts" element={<OurOffices />} />
             <Route path="/tours" element={<TourList />} />
-            <Route path="/tour" element={<TourDetailsPage />} />
-            <Route path="/search-tour" element={<TourSearch />} />
+            <Route path="/tour/:id" element={<TourDetailsPage />} />
             <Route path="/your-tours" element={<YourTours />} />
             <Route path="/account-management" element={<AccountManagement />} />
           </Routes>

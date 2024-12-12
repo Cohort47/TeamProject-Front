@@ -4,7 +4,7 @@ import styles from "./TourSearch.module.css";
 // Данные стран и городов
 const countriesWithCities = {
   Исландия: ["Рейкьявик", "Акюрейри", "Коупавогюр"],
-  Германия: ["Берлин", "Гамбург", "Мюнхен", "Штутгарт", "Франкфурт"],
+  Germany: ["Berlin", "Гамбург", "Munich", "Штутгарт", "Франкфурт"],
   Франция: ["Париж", "Лион", "Марсель", "Бордо", "Тулуза"],
   Чехия: ["Прага", "Брно", "Острава", "Пльзень"],
   Венгрия: ["Будапешт", "Дебрецен", "Сегед", "Мишкольц"],
@@ -16,12 +16,27 @@ const countriesWithCities = {
   Греция: ["Афины", "Салоники", "Ираклион"],
   Италия: ["Рим", "Милан", "Венеция", "Неаполь"],
   Турция: ["Стамбул", "Анкара", "Измир", "Анталия","Гечек"],
-};
+};  
 
-const TourSearch: React.FC = () => {
+interface TourSearchProps {
+  onSearch: (filters: {
+    country: string;
+    city: string;
+    date: string;
+    days: number;
+    tourists: number;
+  }) => void;
+}
+
+
+const TourSearch: React.FC<TourSearchProps> = ({onSearch}) => {
   // Состояния для выбранной страны и города
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [selectedCity, setSelectedCity] = useState<string>("");
+  const [selectedDate, setSelectedDate] = useState<string>("");
+  const [days, setDays] = useState<number>(7);
+  const [tourists, setTourists] = useState<number>(2);
+
 
   // Функция для обработки изменения страны
   const handleCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -39,6 +54,18 @@ const TourSearch: React.FC = () => {
   const cities: string[] = selectedCountry
   ? countriesWithCities[selectedCountry as keyof typeof countriesWithCities] || []
   : [];
+
+  const handleSearchClick = () => {
+    onSearch({
+      country: selectedCountry,
+      city: selectedCity,
+      date: selectedDate,
+      days,
+      tourists,
+    });
+  };
+
+
 
   return (
     <div className={styles.tourSearchContainer}>
@@ -76,17 +103,29 @@ const TourSearch: React.FC = () => {
         </div>
         <div className={`${styles.searchField} ${styles.dateField}`}>
           <label>Дата</label>
-          <input type="date" />
+          <input 
+            type="date"
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+          />
         </div>
         <div className={`${styles.searchField} ${styles.smallField}`}>
           <label>Дней</label>
-          <input type="number" defaultValue="7" min="1" />
+          <input type="number"
+            value={days}
+            min="1"
+            onChange={(e) => setDays(Number(e.target.value))} />
         </div>
         <div className={`${styles.searchField} ${styles.smallField}`}>
           <label>Туристы</label>
-          <input type="number" defaultValue="2" min="1" />
+          <input
+           type="number"
+           value={tourists}
+           min="1"
+           onChange={(e) => setTourists(Number(e.target.value))}
+          />
         </div>
-        <button className={styles.searchButton}>Найти</button>
+        <button className={styles.searchButton} onClick={handleSearchClick}>Найти</button>
       </div>
     </div>
   );

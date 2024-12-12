@@ -1,7 +1,18 @@
 interface Tour {
+  id: number;
+  title: string;
+  description: string;
   price: number;
+  duration: number;
+  startDate: string;
+  endDate: string;
+  state: string;
+  photoLinks: string[];
+  country: string;
+  city: string;
   rating: number;
 }
+
 
 export type SortCriteria =
   | "rating_desc"

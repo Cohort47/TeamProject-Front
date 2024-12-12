@@ -21,6 +21,11 @@
     font-size: 24px;
     margin: 20px 0;
   }
+  .redirectMessage{
+    font-size: 20px;
+    color: rgb(179, 131, 179);
+    /* font-weight: bold; */
+  }
   
   .goHomeButton {
     padding: 10px 20px;
