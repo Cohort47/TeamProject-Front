@@ -5,7 +5,7 @@ import Footer from "./components/footer/Footer";
 import AboutUs from "./components/aboutUs/AboutUs";
 import HomePage from "./components/homepage/HomePage";
 import TourList from "./components/tours/TourList";
-import LoginPage from "./components/login/LoginPage";
+import Login from "./components/login/Login";
 import RegistrationForm from "./components/registrationForm/RegistrationForm";
 import PasswordRecoveryForm from "./components/passwordRecoveryForm/PasswordRecoveryForm";
 import Pools from "./components/pools/Pools";
@@ -37,7 +37,7 @@ const App: React.FC = () => {
           <Header />
           <Routes>
             <Route index element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<RegistrationForm />} />
             <Route path="/password-recovery" element={<PasswordRecoveryForm />}/>
             <Route path="/about-us" element={<AboutUs />} />

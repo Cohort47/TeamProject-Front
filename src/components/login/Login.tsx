@@ -1,48 +1,54 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom"; 
 import styles from "./login.module.css";
 import Button from "../button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import Loader from "../loader/Loader";
 
-interface LoginProps {
-  onRegisterClick: () => void;
-  onForgotPasswordClick: () => void;
-}
-
-const Login: React.FC<LoginProps> = ({
-  onRegisterClick,
-  onForgotPasswordClick,
-}) => {
-  const navigate = useNavigate();
+const Login: React.FC = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
-
+  const navigate = useNavigate();
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const form = event.currentTarget;
-    fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: form.email.value,
-        password: form.password.value,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Логика входа пользователя
-        // После успешного входа, перенаправить на домашнюю страницу
-        navigate("/");
+    setLoading(true); // Начинаем загрузку
+
+    // Создаем объект с данными из полей
+    const credentials = { email, password };
+    console.log(credentials);
+
+    // Отправляем запрос через axios
+    axios.post('/api/auth', credentials)
+      .then((response) => {
+        const token = response.data.token;
+         // Сохраняем токен в локальное хранилище
+        localStorage.setItem("token", token);
+        setLoading(false);
+        navigate("/account-management")
       })
-      .catch((error) => console.error("Error:", error));
+      .catch((err) => {
+        console.error("Ошибка при входе:", err);
+        setError("Неверный email или пароль. Пожалуйста, попробуйте снова.");
+        setLoading(false);
+      });
   };
+
+  if(error){
+    console.log(error);
+  }
+  if(loading){
+    return <Loader/>
+  }
 
   return (
     <div className={styles.loginContainer}>
@@ -51,8 +57,10 @@ const Login: React.FC<LoginProps> = ({
         <form onSubmit={handleLogin}>
           <input
             name="email"
-            type="email"
+            //type="email"
             placeholder="  Email"
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)}
             className={styles.input}
             required
           />
@@ -61,6 +69,8 @@ const Login: React.FC<LoginProps> = ({
               name="password"
               type={passwordVisible ? "text" : "password"}
               placeholder="  Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className={styles.input}
               required
             />
@@ -74,17 +84,15 @@ const Login: React.FC<LoginProps> = ({
           </div>
           <div className={styles.buttonGroup}>
             <Button type="submit">Войти</Button>
-            <Button type="button" onClick={onRegisterClick}>
-              Регистрация
+            <Button type="button">
+              <RouterLink to="/registration">Регистрация</RouterLink>
             </Button>
           </div>
         </form>
-        <button
-          className={styles.forgotPassword}
-          onClick={onForgotPasswordClick}
-        >
+
+        <RouterLink to="/forgot-password" className={styles.forgotPassword}>
           Забыли пароль?
-        </button>
+        </RouterLink>
       </div>
     </div>
   );
