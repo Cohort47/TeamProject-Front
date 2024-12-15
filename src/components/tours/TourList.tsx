@@ -20,7 +20,7 @@ interface Tour {
   photoLinks: string[];
   country: string;
   city: string;
-  rating: 5;
+  rating: number;
 }
 
 interface Filter {
