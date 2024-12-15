@@ -18,7 +18,7 @@ const Header: React.FC = () => {
   ];
 
   useEffect(() => {
-    if (token !== "") {
+    if (token) {
       setLink("/account-management");
     } else {
       setLink("/login");
