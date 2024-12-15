@@ -20,7 +20,7 @@ interface Tour {
   photoLinks: string[];
   country: string;
   city: string;
-  rating: 5;
+  rating: number;
 }
 
 interface Filter {
@@ -95,12 +95,13 @@ const TourList: React.FC = () => {
   };
 
   console.log(filterTours);
+  
 
   const filteredTours = filterTours(tours, filters);
   const sortedTours = sortTours(filteredTours, sortCriteria);
-  const visibleTours = filteredTours.slice(0, visibleToursCount);
+  const visibleTours = sortedTours.slice(0, visibleToursCount);
   console.log(filters);
-  console.log(tours);
+  console.table(sortedTours);
   console.log(filteredTours);
 
   const handleViewAllClick = () => {

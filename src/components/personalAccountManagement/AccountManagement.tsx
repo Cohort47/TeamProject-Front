@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./AccountManagement.module.css";
+import { Link} from "react-router-dom"; 
 
 const AccountManagement: React.FC = () => {
   return (
@@ -9,16 +10,16 @@ const AccountManagement: React.FC = () => {
       <div className={styles.managementOptions}>
         <div className={styles.option}>
           <span className={styles.optionLabel}>Личные данные</span>
-          <button className={styles.editButton}>Изменить</button>
+          <button className={styles.editButton}>Просмотреть</button>
         </div>
         <div className={styles.option}>
           <span className={styles.optionLabel}>Поездки и бронирования</span>
-          <button className={styles.editButton}>Изменить</button>
+          <button className={styles.editButton}>Просмотреть</button>
         </div>
       </div>
 
       <div className={styles.saveContainer}>
-        <button className={styles.saveButton}>Сохранить</button>
+        <Link  to="/" className={styles.saveButton}>Назад</Link>
       </div>
     </section>
   );

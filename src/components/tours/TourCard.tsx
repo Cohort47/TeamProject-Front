@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import styles from "./TourCard.module.css";
-
 
 interface TourCardProps {
   id: number;
@@ -32,8 +31,12 @@ const TourCard: React.FC<TourCardProps> = ({
           <span className={styles.price}>{price} €</span>
           <span className={styles.rating}>{"★".repeat(rating)}</span>
         </div>
-        <h3 className={styles.name}>{title}, {duration} days</h3>
-        <p className={styles.location}>{city}, {country}</p>
+        <h3 className={styles.name}>
+          {title}, {duration} days
+        </h3>
+        <p className={styles.location}>
+          {city}, {country}
+        </p>
         <Link to={`/tour/${id}`}>
           <button className={styles.buttonRooms}>Детальная информация</button>
         </Link>
