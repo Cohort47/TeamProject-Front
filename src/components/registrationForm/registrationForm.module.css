@@ -7,11 +7,14 @@
 }
 
 .registrationContainer {
+  position:inherit;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  height: 400px;
   background: none;
+  margin: 30px;
+
 }
 
 .registrationBox {
@@ -60,4 +63,15 @@
   cursor: pointer;
   width: 20px;
   height: 20px;
+}
+
+.login {
+  display: block;
+  margin-top: 20px;
+  color: #342146;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
 }

@@ -2,8 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  height: 300px;
   background: none;
+  margin: 30px;
 }
 
 .loginBox {
@@ -58,6 +59,7 @@
 .buttonGroup {
   display: flex;
   justify-content: space-between;
+  text-decoration: none;
 }
 
 .forgotPassword {
@@ -67,8 +69,13 @@
   background: none;
   border: none;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
   padding: 0;
+}
+
+.registrationLink{
+  color:#342146;
+  text-decoration: none;
 }
 
 .forgotPassword:hover {

@@ -1,42 +1,64 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./registrationForm.module.css";
 import Button from "../button/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { Link as RouterLink, useNavigate } from "react-router-dom"; 
+import axios from "axios";
+import Loader from "../loader/Loader";
 
 const RegistrationForm: React.FC = () => {
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const handleRegistration = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleRegistration = async  (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const form = event.currentTarget;
-    fetch("/api/registration", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        firstName: form.firstName.value,
-        lastName: form.lastName.value,
-        email: form.email.value,
-        password: form.password.value,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Логика регистрации пользователя
-        // После успешной регистрации, перенаправить на страницу логина
-        navigate("/login");
-      })
-      .catch((error) => console.error("Error:", error));
-  };
+      // Получение данных формы
+      const formData = new FormData(event.currentTarget);
+      const data = {
+        firstName: formData.get("firstName"),
+        lastName: formData.get("lastName"),
+        email: formData.get("email"),
+        password: formData.get("password"),
+      };
+
+      try {
+        setLoading(true);
+        // Отправка POST-запроса на сервер
+        const response = await axios.post("api/public/register", data);
+  
+        // Проверка успешного ответа
+        if (response.status === 201 || response.status === 200) {
+          console.log("Регистрация прошла успешно!");
+          navigate("/login"); // Перенаправление на страницу входа
+        }
+      } catch (err: any) {
+        // Обработка ошибок
+        if (err.response && err.response.data.message) {
+          setError(err.response.data.message); // Сообщение с сервера
+        } else {
+          setError("Произошла ошибка регистрации. Попробуйте еще раз.");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+
+  if(loading){
+    <Loader/>
+  }
+
+  if(error){
+    console.log(error);
+  }
 
   return (
     <div className={styles.registrationContainer}>
@@ -82,6 +104,9 @@ const RegistrationForm: React.FC = () => {
             </span>
           </div>
           <Button type="submit">Зарегистрироваться</Button>
+          <RouterLink to="/login" className={styles.login}>
+          Войти
+        </RouterLink>
         </form>
       </div>
     </div>
