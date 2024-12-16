@@ -3,6 +3,7 @@ import { Link as RouterLink, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import styles from "./Header.module.css";
 import logo from "./berlin_small.png";
+import axios from "axios";
 
 const Header: React.FC = () => {
   const token = localStorage.getItem("token");
@@ -18,16 +19,24 @@ const Header: React.FC = () => {
   ];
 
   useEffect(() => {
-    if (token) {
-      setLink("/account-management");
-    } else {
-      setLink("/login");
-    }
+    handlePersonalAccountClick();
   })
 
   const handlePersonalAccountClick = () => {
     if (token !== "") {
-      setLink("/account-management");
+      axios.get("api/auth/me",{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      }) 
+      .then((response) => {
+        console.log("Данные пользователя:", response.data);
+        setLink("/account-management"); // Если токен валиден, перенаправляем на страницу аккаунта
+      })
+      .catch((error) => {
+        console.error("Ошибка при получении данных пользователя:", error);
+        setLink("/login"); 
+      });
     } else {
       setLink("/login");
     }

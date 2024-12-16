@@ -85,7 +85,7 @@ const Login: React.FC = () => {
           <div className={styles.buttonGroup}>
             <Button type="submit">Войти</Button>
             <Button type="button">
-              <RouterLink to="/registration">Регистрация</RouterLink>
+              <RouterLink to="/registration" className={styles.registrationLink}>Регистрация</RouterLink>
             </Button>
           </div>
         </form>
