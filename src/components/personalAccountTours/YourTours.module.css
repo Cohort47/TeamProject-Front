@@ -12,21 +12,8 @@
   text-align: center;
 }
 
-.city {
+.tourContainer {
   margin-bottom: 30px;
-}
-
-.cityTitle {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #333333;
-}
-
-.cityDates {
-  font-size: 14px;
-  color: #777777;
-  margin-bottom: 15px;
 }
 
 .tour {
@@ -36,15 +23,34 @@
   background-color: #ffffff;
   border: 1px solid #dcdcdc;
   border-radius: 10px;
-  padding: 15px;
+  padding: 20px;
   margin-bottom: 10px;
 }
 
-.tourImage {
-  width: 80px;
-  height: 80px;
+.tourImageContainer {
+  flex-shrink: 0;
+  width: 300px;
+  height: 200px;
   border-radius: 10px;
   margin-right: 15px;
+  overflow: hidden;
+}
+
+.tourImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tourImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #999;
+  font-size: 14px;
 }
 
 .tourDetails {
@@ -52,25 +58,41 @@
 }
 
 .tourName {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: #26434d;
   margin-bottom: 5px;
 }
 
+.tourCity {
+  font-size: 16px;
+  color: #555555;
+  margin-bottom: 5px;
+}
+
 .tourDates {
-  font-size: 14px;
+  font-size: 16px;
   color: #555555;
 }
 
+.tourDuration {
+  font-size: 16px;
+  color: #555555;
+  margin-bottom: 5px;
+}
+
 .tourStatus {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   margin-top: 5px;
 }
 
-.completed {
+.booked {
   color: #28a745;
+}
+
+.available {
+  color: #17a2b8;
 }
 
 .cancelled {
@@ -81,16 +103,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
   position: relative;
+  margin-right: 30px;
 }
 
 .tourPrice {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: #26434d;
-  text-align: right;
-  margin-right: 10px;
+}
+
+.tourAmountOfPeople {
+  font-size: 16px;
+  color: #555555;
+}
+
+.menuButtonContainer {
+  position: relative;
 }
 
 .menuButton {
@@ -111,7 +140,6 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 10;
   min-width: 150px;
-  white-space: nowrap;
 }
 
 .dropdownItem {
@@ -124,7 +152,6 @@
   border: none;
   text-align: left;
   cursor: pointer;
-  white-space: nowrap;
 }
 
 .dropdownItem:hover {

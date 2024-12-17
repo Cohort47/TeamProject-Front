@@ -1,120 +1,149 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./YourTours.module.css";
+import axios from "axios";
+
+// Интерфейсы для данных
+interface UserResponseDto {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  role: string;
+}
+
+interface TourResponseDto {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  duration: number;
+  startDate: string;
+  endDate: string;
+  state: string;
+  country: string;
+  city: string;
+  photoLinks: string[];
+}
+
+interface BookingResponseDto {
+  id: number;
+  user: UserResponseDto;
+  tour: TourResponseDto;
+  bookingDate: string;
+  tourDate: string;
+  amountOfPeople: number;
+  state: string;
+}
 
 const YourTours: React.FC = () => {
   const [openMenuIndex, setOpenMenuIndex] = useState<number | null>(null);
-
-  const tours = [
-    {
-      city: "Budapest",
-      dates: "30 Jul 2015 – 13 Aug 2015",
-      tours: [
-        {
-          name: "Pop Up Hostels - Citadella",
-          img: "https://via.placeholder.com/80",
-          country: "Hungary",
-          price: "€225.28",
-          status: "Completed",
-          dates: "30 Jul 2015 – 13 Aug 2015",
-        },
-        {
-          name: "Pyramos Hotel",
-          img: "https://via.placeholder.com/80",
-          country: "Cyprus",
-          price: "€47.79",
-          status: "Completed",
-          dates: "28 Feb – 29 Feb",
-        },
-      ],
-    },
-    {
-      city: "Mumbai",
-      dates: "31 Dec 2017 – 2 Jan 2018",
-      tours: [
-        {
-          name: "OYO 31006 Briteway",
-          img: "https://via.placeholder.com/80",
-          country: "India",
-          price: "€46.00",
-          status: "Cancelled",
-          dates: "31 Dec 2017 – 2 Jan 2018",
-        },
-      ],
-    },
-    {
-      city: "Agarvado",
-      dates: "9 Dec 2017 – 10 Dec 2017",
-      tours: [
-        {
-          name: "Capital O 19834 La Sella Resort",
-          img: "https://via.placeholder.com/80",
-          country: "Spain",
-          price: "€17.00",
-          status: "Cancelled",
-          dates: "9 Dec 2017 – 10 Dec 2017",
-        },
-      ],
-    },
-  ];
+  const [tours, setTours] = useState<BookingResponseDto[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   const toggleMenu = (index: number) => {
     setOpenMenuIndex(openMenuIndex === index ? null : index);
   };
 
+  // Функция для запроса данных туров
+  const fetchTours = async () => {
+    try {
+      const response = await axios.get<BookingResponseDto[]>("/api/bookings", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      setTours(response.data);
+      setIsLoading(false);
+    } catch (err) {
+      console.error("Ошибка при загрузке туров", err);
+      setError("Не удалось загрузить туры.");
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTours();
+  }, []);
+
+  if (isLoading) {
+    return <div>Загрузка...</div>;
+  }
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
+
   return (
     <section className={styles.yourTours} id="your-tours">
       <h2 className={styles.title}>Ваши туры</h2>
 
-      {tours.map((city, index) => (
-        <div key={index} className={styles.city}>
-          <h3 className={styles.cityTitle}>{city.city}</h3>
-          <p className={styles.cityDates}>{city.dates}</p>
-          {city.tours.map((tour, idx) => {
-            const uniqueIndex = index * 100 + idx;
-            return (
-              <div key={uniqueIndex} className={styles.tour}>
+      {tours.map((booking, index) => (
+        <div key={booking.id} className={styles.tourContainer}>
+          <div className={styles.tour}>
+            <div className={styles.tourImageContainer}>
+              {booking.tour.photoLinks.length > 0 ? (
                 <img
-                  src={tour.img}
-                  alt={tour.name}
+                  src={booking.tour.photoLinks[0]}
+                  alt={booking.tour.title}
                   className={styles.tourImage}
                 />
-                <div className={styles.tourDetails}>
-                  <h4 className={styles.tourName}>{tour.name}</h4>
-                  <p className={styles.tourDates}>
-                    {tour.dates} – {tour.country}
-                  </p>
-                  <p
-                    className={`${styles.tourStatus} ${
-                      tour.status === "Completed"
-                        ? styles.completed
-                        : styles.cancelled
-                    }`}
-                  >
-                    {tour.status}
-                  </p>
-                </div>
-                <div className={styles.tourPriceContainer}>
-                  <span className={styles.tourPrice}>{tour.price}</span>
-                  <button
-                    className={styles.menuButton}
-                    onClick={() => toggleMenu(uniqueIndex)}
-                  >
-                    &#8226;&#8226;&#8226;
+              ) : (
+                <div className={styles.tourImagePlaceholder}>Фото не доступно</div>
+              )}
+            </div>
+
+            <div className={styles.tourDetails}>
+              <h4 className={styles.tourName}>{booking.tour.title}</h4>
+              <p className={styles.tourCity}>
+                {booking.tour.city}, {booking.tour.country}
+              </p>
+              <p className={styles.tourDates}>
+                Дата тура: {booking.tourDate}
+              </p>
+              <p className={styles.tourDuration}>
+                Длительность: {booking.tour.duration} дня(ей)
+              </p>
+              <p className={styles.tourAmountOfPeople}>
+                Количество людей: {booking.amountOfPeople}
+              </p>
+              <p
+                className={`${styles.tourStatus} ${
+                  booking.state === "BOOKED"
+                    ? styles.booked
+                    : booking.state === "CANCELED"
+                    ? styles.available
+                    : styles.cancelled
+                }`}
+              >
+                {booking.state}
+              </p>
+            </div>
+
+            <div className={styles.tourPriceContainer}>
+              <span className={styles.tourPrice}>{booking.tour.price} €</span>
+              
+            </div>
+
+            <div className={styles.menuButtonContainer}>
+              <button
+                className={styles.menuButton}
+                onClick={() => toggleMenu(index)}
+              >
+                &#8226;&#8226;&#8226;
+              </button>
+              {openMenuIndex === index && (
+                <div className={styles.dropdownMenu}>
+                  <button className={styles.dropdownItem}>
+                    Посмотреть историю
                   </button>
-                  {openMenuIndex === uniqueIndex && (
-                    <div className={styles.dropdownMenu}>
-                      <button className={styles.dropdownItem}>
-                        Посмотреть историю
-                      </button>
-                      <button className={styles.dropdownItem}>
-                        Удалить бронирование
-                      </button>
-                    </div>
-                  )}
+                  <button className={styles.dropdownItem}>
+                    Удалить бронирование
+                  </button>
                 </div>
-              </div>
-            );
-          })}
+              )}
+            </div>
+          </div>
         </div>
       ))}
     </section>

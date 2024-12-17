@@ -43,6 +43,12 @@
   border-radius: 5px;
 }
 
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
 .editButton {
   background-color: #ffffff;
   border: 1px solid #63fdc2;
@@ -51,6 +57,7 @@
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  text-decoration: none;
   transition: background-color 0.3s ease, color 0.3s ease,
     border-color 0.3s ease;
 }
@@ -61,34 +68,39 @@
 }
 
 .saveButton {
-  background-color: #00c04b;
-  color: #ffffff;
-  border: none;
+  background-color: #ffffff;
+  border: 1px solid #4bd986;
+  color: #26434d;
+  font-size: 16px;
   padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
   margin-right: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .saveButton:hover {
-  background-color: #009e3d;
+  background-color: #4bd986;
 }
 
 .cancelButton {
-  background-color: #d9534f;
-  color: #ffffff;
-  border: none;
-  padding: 10px 25px;
+  background-color: #ffffff;
+  border: 1px solid #ff6868;
+  color: #26434d;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin-right: 20px;
   border-radius: 5px;
-  font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .cancelButton:hover {
-  background-color: #c9302c;
+  background-color: #ff6868;
 }
 
 .buttonGroup {
