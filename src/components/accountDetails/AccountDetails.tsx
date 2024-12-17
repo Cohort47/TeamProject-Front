@@ -1,41 +1,82 @@
-import React, { useState } from "react";
-import styles from "./AccountManagement.module.css";
+import React, { useEffect, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import styles from "./AccountDetails.module.css";
+import Loader from "../loader/Loader";
+import axios from "axios";
 
 interface AccountData {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  phone: string;
-  birthDate: string;
-  nationality: string;
-  gender: string;
-  address: string;
+  // phone: string;
+  // birthDate: string;
+  // nationality: string;
+  // gender: string;
+  // address: string;
 }
 
 const AccountDetails: React.FC = () => {
-  const [data, setData] = useState<AccountData>({
-    name: "Алексей Самойлов",
-    email: "a.samoylov@gmail.com",
-    phone: "+49 635 234 33 33 33",
-    birthDate: "24.07.1980",
-    nationality: "Germany",
-    gender: "Men",
-    address: "Kieferpferde 36\n13645 Berlin\nGermany",
-  });
-
-  const [editData, setEditData] = useState<AccountData>(data);
-
+  const token = localStorage.getItem("token");
+  const [data, setData] = useState<AccountData | null>(null);
+  const [editData, setEditData] = useState<AccountData | null>(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const handleInputChange = (field: keyof AccountData, value: string) => {
-    setEditData((prevData) => ({
-      ...prevData,
-      [field]: value,
-    }));
+    setEditData((prevData) =>
+      prevData ? { ...prevData, [field]: value } : null
+    );
   };
 
-  const handleSave = () => {
-    setData(editData);
-    setIsEditing(false);
+  useEffect(() => {
+    const fetchAccountData = async () => {
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const response = await axios.get("/api/auth/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setData(response.data);
+        setEditData(response.data);
+      } catch (err: any) {
+        console.error("Ошибка при загрузке данных:", err);
+        setError(err.response?.data?.message || "Не удалось загрузить данные.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAccountData();
+  }, [token]);
+
+  const handleSave = async () => {
+    if (!editData) return;
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await axios.put("/api/users", editData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setData(editData);
+      setIsEditing(false);
+    } catch (err: any) {
+      console.error("Ошибка при сохранении данных:", err);
+      setError(
+        err.response?.data?.message || "Не удалось сохранить изменения."
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleCancel = () => {
@@ -43,33 +84,44 @@ const AccountDetails: React.FC = () => {
     setIsEditing(false);
   };
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    console.log(error);
+  }
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>ПЕРСОНАЛЬНЫЕ ДАННЫЕ</h2>
       <table className={styles.table}>
         <tbody>
-          {Object.entries(editData).map(([key, value]) => (
-            <tr key={key}>
-              <th className={styles.th}>{getFieldName(key)}</th>
-              <td className={styles.td}>
-                {isEditing ? (
-                  <input
-                    type="text"
-                    className={styles.input}
-                    value={value}
-                    onChange={(e) =>
-                      handleInputChange(
-                        key as keyof AccountData,
-                        e.target.value
-                      )
-                    }
-                  />
-                ) : (
-                  <span>{data[key as keyof AccountData]}</span>
-                )}
-              </td>
-            </tr>
-          ))}
+          {Object.entries(editData || {}).map(([key, value]) => {
+            if (key === "id" || key === "role") return null;
+            return (
+              <tr key={key}>
+                <th className={styles.th}>{getFieldName(key)}</th>
+                <td className={styles.td}>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      className={styles.input}
+                      value={value}
+                      onChange={(e) =>
+                        handleInputChange(
+                          key as keyof AccountData,
+                          e.target.value
+                        )
+                      }
+                    />
+                  ) : (
+                    <span>{data?.[key as keyof AccountData]}</span>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <div className={styles.buttonGroup}>
@@ -83,12 +135,17 @@ const AccountDetails: React.FC = () => {
             </button>
           </>
         ) : (
-          <button
-            className={styles.editButton}
-            onClick={() => setIsEditing(true)}
-          >
-            Изменить
-          </button>
+          <div className={styles.buttons}>
+            <RouterLink to="/account-management" className={styles.editButton}>
+              Назад
+            </RouterLink>
+            <button
+              className={styles.editButton}
+              onClick={() => setIsEditing(true)}
+            >
+              Изменить
+            </button>
+          </div>
         )}
       </div>
     </div>
@@ -97,13 +154,9 @@ const AccountDetails: React.FC = () => {
 
 const getFieldName = (key: string): string => {
   const fieldNames: { [key: string]: string } = {
-    name: "Имя",
+    firstName: "Имя",
+    lastName: "Фамилия",
     email: "Email адрес",
-    phone: "Номер телефона",
-    birthDate: "День рождения",
-    nationality: "Национальность",
-    gender: "Гендер",
-    address: "Адрес",
   };
   return fieldNames[key] || key;
 };
