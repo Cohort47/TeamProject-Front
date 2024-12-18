@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styles from "./UserTable.module.css";
 
 type User = {
@@ -11,83 +12,75 @@ type User = {
 };
 
 const UserTable: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([
-    {
-      id: 1,
-      firstName: "Иван",
-      lastName: "Иванов",
-      email: "ivanov1@mail.com",
-      role: "ADMIN",
-      isBlocked: false,
-    },
-    {
-      id: 2,
-      firstName: "Иван",
-      lastName: "Иванов",
-      email: "ivanov@mail.com",
-      role: "USER",
-      isBlocked: false,
-    },
-    {
-      id: 2,
-      firstName: "Иван",
-      lastName: "Иванов",
-      email: "ivanov@mail.com",
-      role: "USER",
-      isBlocked: false,
-    },
-    {
-      id: 2,
-      firstName: "Иван",
-      lastName: "Иванов",
-      email: "ivanov@mail.com",
-      role: "USER",
-      isBlocked: false,
-    },
-    {
-      id: 2,
-      firstName: "Иван",
-      lastName: "Иванов",
-      email: "ivanov@mail.com",
-      role: "USER",
-      isBlocked: false,
-    },
-    {
-      id: 2,
-      firstName: "Иван",
-      lastName: "Иванов",
-      email: "ivanov@mail.com",
-      role: "USER",
-      isBlocked: false,
-    },
-    {
-      id: 2,
-      firstName: "Иван",
-      lastName: "Иванов",
-      email: "ivanov@mail.com",
-      role: "USER",
-      isBlocked: false,
-    },
-  ]);
-
+  const [users, setUsers] = useState<User[]>([]);
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("/api/admin/users");
+        setUsers(response.data);
+        setError(null);
+      } catch (err) {
+        setError("Ошибка при загрузке пользователей");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  const updateUserRole = async (id: number, role: string) => {
+    try {
+      const response = await axios.put(`/api/admin/give-role/${id}`, null, {
+        params: { role },
+      });
+      const updatedUser = response.data;
+
+      setUsers((prevUsers) =>
+        prevUsers.map((user) =>
+          user.id === updatedUser.id ? { ...user, role: updatedUser.role } : user
+        )
+      );
+    } catch {
+      setError("Ошибка при изменении роли пользователя");
+    }
+  };
+
+  const toggleBlockUser = async (email: string) => {
+    try {
+      const response = await axios.put("/api/admin/ban", null, { params: { email } });
+      const updatedUser = response.data;
+
+      setUsers((prevUsers) =>
+        prevUsers.map((user) =>
+          user.email === updatedUser.email
+            ? { ...user, isBlocked: !user.isBlocked }
+            : user
+        )
+      );
+    } catch {
+      setError("Ошибка при изменении состояния блокировки пользователя");
+    }
+  };
+
+  const deleteUser = async (id: number) => {
+    try {
+      await axios.delete(`/api/admin/users/${id}`);
+      setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+    } catch {
+      setError("Ошибка при удалении пользователя");
+    }
+  };
 
   const handleEditUser = (user: User) => {
     setEditingUser(user);
     setIsModalOpen(true);
-  };
-
-  const handleSaveUser = () => {
-    if (editingUser) {
-      setUsers((prevUsers) =>
-        prevUsers.map((user) =>
-          user.id === editingUser.id ? editingUser : user
-        )
-      );
-      setEditingUser(null);
-      setIsModalOpen(false);
-    }
   };
 
   const handleInputChange = (
@@ -99,22 +92,28 @@ const UserTable: React.FC = () => {
     }
   };
 
+  const handleSaveUser = async () => {
+    if (editingUser) {
+      try {
+        await updateUserRole(editingUser.id, editingUser.role);
+        setEditingUser(null);
+        setIsModalOpen(false);
+      } catch {
+        setError("Ошибка при сохранении изменений пользователя");
+      }
+    }
+  };
+
   const handleCancel = () => {
     setEditingUser(null);
     setIsModalOpen(false);
   };
 
-  const toggleBlockUser = (id: number) => {
-    setUsers((prevUsers) =>
-      prevUsers.map((user) =>
-        user.id === id ? { ...user, isBlocked: !user.isBlocked } : user
-      )
-    );
-  };
-
   return (
     <div className={styles.userTable}>
       <h2 className={styles.title}>Пользователи</h2>
+      {loading && <p>Загрузка...</p>}
+      {error && <p className={styles.error}>{error}</p>}
       <table className={styles.table}>
         <thead>
           <tr>
@@ -137,19 +136,25 @@ const UserTable: React.FC = () => {
               <td>{user.role}</td>
               <td>{user.isBlocked ? "Заблокирован" : "Активен"}</td>
               <td>
-              <div className={styles.actionButtons}>
-                <button
-                  onClick={() => handleEditUser(user)}
-                  className={styles.editBtn}
-                >
-                  Изменить
-                </button>
-                <button
-                  onClick={() => toggleBlockUser(user.id)}
-                  className={styles.blockBtn}
-                >
-                  {user.isBlocked ? "Разблокировать" : "Заблокировать"}
-                </button>
+                <div className={styles.actionButtons}>
+                  <button
+                    onClick={() => handleEditUser(user)}
+                    className={styles.editBtn}
+                  >
+                    Изменить
+                  </button>
+                  <button
+                    onClick={() => toggleBlockUser(user.email)}
+                    className={styles.blockBtn}
+                  >
+                    {user.isBlocked ? "Разблокировать" : "Заблокировать"}
+                  </button>
+                  <button
+                    onClick={() => deleteUser(user.id)}
+                    className={styles.deleteBtn}
+                  >
+                    Удалить
+                  </button>
                 </div>
               </td>
             </tr>
