@@ -22,6 +22,7 @@ import YourTours from "./components/personalAccountTours/YourTours";
 import AccountDetails from "./components/accountDetails/AccountDetails";
 import UserTable from "./components/adminPanel/userTable/UserTable";
 import AdminPanel from "./components/adminPanel/adminPanelApp/AdminPanel";
+import BookingForm from "./components/bookingForm/BookingForm";
 
 
 const App: React.FC = () => {
@@ -59,6 +60,7 @@ const App: React.FC = () => {
             <Route path ="/account-details" element={<AccountDetails/>}/>
             <Route path="/account-tours" element={<YourTours/>}/>
             <Route path="/admin" element={<AdminPanel/>} />
+            <Route path="/booking/:id" element={<BookingForm/>}/>
           </Routes>
           <Footer />
         </>

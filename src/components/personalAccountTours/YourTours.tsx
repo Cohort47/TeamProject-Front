@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./YourTours.module.css";
 import axios from "axios";
+import Loader from "../loader/Loader";
 
 // Интерфейсы для данных
 interface UserResponseDto {
@@ -67,7 +68,7 @@ const YourTours: React.FC = () => {
   }, []);
 
   if (isLoading) {
-    return <div>Загрузка...</div>;
+    return <Loader/>;
   }
 
   if (error) {
@@ -78,7 +79,11 @@ const YourTours: React.FC = () => {
     <section className={styles.yourTours} id="your-tours">
       <h2 className={styles.title}>Ваши туры</h2>
 
-      {tours.map((booking, index) => (
+      {tours.length === 0 ? (
+        <p className={styles.noTours}>Пока нет резерваций.</p>
+      ) : (
+
+      tours.map((booking, index) => (
         <div key={booking.id} className={styles.tourContainer}>
           <div className={styles.tour}>
             <div className={styles.tourImageContainer}>
@@ -121,7 +126,7 @@ const YourTours: React.FC = () => {
             </div>
 
             <div className={styles.tourPriceContainer}>
-              <span className={styles.tourPrice}>{booking.tour.price} €</span>
+              <span className={styles.tourPrice}>{booking.tour.price * booking.amountOfPeople} €</span>
               
             </div>
 
@@ -132,7 +137,7 @@ const YourTours: React.FC = () => {
               >
                 &#8226;&#8226;&#8226;
               </button>
-              {openMenuIndex === index && (
+              {/* {openMenuIndex === index && (
                 <div className={styles.dropdownMenu}>
                   <button className={styles.dropdownItem}>
                     Посмотреть историю
@@ -141,11 +146,12 @@ const YourTours: React.FC = () => {
                     Удалить бронирование
                   </button>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>
-      ))}
+      ))
+      )}
     </section>
   );
 };
