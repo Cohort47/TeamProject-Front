@@ -13,6 +13,7 @@ interface Booking {
 }
 
 const HistoryTable: React.FC = () => {
+  const token = localStorage.getItem("token");
   const [historyData, setHistoryData] = useState<Booking[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -20,7 +21,10 @@ const HistoryTable: React.FC = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const response = await axios.get<Booking[]>("api/bookings/all");
+        const response = await axios.get("api/bookings/all",{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }});
         setHistoryData(response.data);
       } catch (err: any) {
         setError(err.response?.data?.message || "Ошибка при загрузке данных.");

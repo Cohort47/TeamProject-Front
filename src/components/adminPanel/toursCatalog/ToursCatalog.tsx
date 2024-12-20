@@ -18,17 +18,17 @@ const ToursCatalog: React.FC = () => {
   const [editingTour, setEditingTour] = useState<Tour | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  
-  const fetchTours = async () => {
-    try {
-      const response = await axios.get("/api/admin/tours");
-      setTours(response.data);
-    } catch (error) {
-      console.error("Error fetching tours:", error);
-    }
-  };
+  useEffect(() => {
+    axios
+      .get(`/api/tours`)
+      .then((response) => {
+        setTours(response.data);
+      })
+      .catch((err) => {
+        console.error("Ошибка при получении данных о турах:", err);
+      });
+  }, []);
 
-  
   const createTour = async (newTour: Tour) => {
     try {
       const response = await axios.post("/api/admin/tours", newTour);
@@ -38,7 +38,6 @@ const ToursCatalog: React.FC = () => {
     }
   };
 
-  
   const updateTour = async (id: number, updatedTour: Tour) => {
     try {
       const response = await axios.put(`/api/admin/tours/${id}`, updatedTour);
@@ -50,7 +49,6 @@ const ToursCatalog: React.FC = () => {
     }
   };
 
-  
   const deleteTour = async (id: number) => {
     try {
       await axios.delete(`/api/admin/tours/${id}`);
@@ -60,31 +58,22 @@ const ToursCatalog: React.FC = () => {
     }
   };
 
-  
   const handleEditTour = (tour: Tour) => {
     setEditingTour(tour);
     setIsModalOpen(true);
   };
 
-
   const handleSaveTour = async () => {
     if (editingTour) {
       if (editingTour.id) {
-        
         await updateTour(editingTour.id, editingTour);
       } else {
-        
         await createTour(editingTour);
       }
       setEditingTour(null);
       setIsModalOpen(false);
     }
   };
-
-  
-  useEffect(() => {
-    fetchTours();
-  }, []);
 
   return (
     <div className={styles.toursCatalog}>
@@ -106,40 +95,48 @@ const ToursCatalog: React.FC = () => {
         Добавить тур
       </button>
       <div className={styles.toursList}>
-        {tours.map((tour) => (
-          <div key={tour.id} className={styles.tourCard}>
-            <h3>{tour.title}</h3>
-            <p>{tour.description}</p>
-            <p>Продолжительность: {tour.duration} дней</p>
-            <p>Цена: {tour.price}€</p>
-            <p>Дата начала: {tour.startDate}</p>
-            <p>Дата окончания: {tour.endDate}</p>
-            <div className={styles.images}>
-              {tour.images.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt={`Tour ${index + 1}`}
-                  className={styles.image}
-                />
-              ))}
+        {tours.length > 0 ? (
+          tours.map((tour) => (
+            <div key={tour.id} className={styles.tourCard}>
+              <h3>{tour.title}</h3>
+              <p>{tour.description}</p>
+              <p>Продолжительность: {tour.duration} дней</p>
+              <p>Цена: {tour.price}€</p>
+              {tour.startDate && <p>Дата начала: {tour.startDate}</p>}
+              {tour.endDate && <p>Дата окончания: {tour.endDate}</p>}
+              <div className={styles.images}>
+                {tour.images && tour.images.length > 0 ? (
+                  tour.images.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image}
+                      alt={`Tour ${index + 1}`}
+                      className={styles.image}
+                    />
+                  ))
+                ) : (
+                  <p>Нет изображений</p>
+                )}
+              </div>
+              <div className={styles.buttonContainer}>
+                <button
+                  onClick={() => handleEditTour(tour)}
+                  className={styles.editBtn}
+                >
+                  Редактировать
+                </button>
+                <button
+                  onClick={() => deleteTour(tour.id)}
+                  className={styles.deleteBtn}
+                >
+                  Удалить
+                </button>
+              </div>
             </div>
-            <div className={styles.buttonContainer}>
-              <button
-                onClick={() => handleEditTour(tour)}
-                className={styles.editBtn}
-              >
-                Редактировать
-              </button>
-              <button
-                onClick={() => deleteTour(tour.id)}
-                className={styles.deleteBtn}
-              >
-                Удалить
-              </button>
-            </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>Нет доступных туров</p>
+        )}
       </div>
       {isModalOpen && editingTour && (
         <div className={styles.modalOverlay}>

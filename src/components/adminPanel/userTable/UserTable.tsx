@@ -12,6 +12,7 @@ type User = {
 };
 
 const UserTable: React.FC = () => {
+  const token = localStorage.getItem("token");
   const [users, setUsers] = useState<User[]>([]);
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,7 +23,11 @@ const UserTable: React.FC = () => {
     const fetchUsers = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("/api/admin/users");
+        const response = await axios.get("/api/admin/users",{
+            headers: {
+              Authorization: `Bearer ${token}`,
+            }
+          });
         setUsers(response.data);
         setError(null);
       } catch (err) {
