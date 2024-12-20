@@ -8,10 +8,18 @@
   font-family: "Arial", sans-serif;
 }
 
+.tourTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #26434d;
+  margin: 20px;
+}
+
 .styledTable {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
+  min-height: 300px;
 }
 
 .styledTable th,
@@ -31,33 +39,35 @@
   font-size: 14px;
 }
 
-.styledTable tr td:first-child {
-  font-weight: bold;
-  color: #333;
-}
-
 .styledTable tr:hover {
   background-color: #f3f3f3;
 }
 
 .description {
+  max-width: 500px;
+  width: 100%;
   margin: 10px 0 0;
-  padding: 10px;
+  padding: 15px;
   border: 1px solid #63fdc2;
   border-radius: 20px;
   background-color: #f6fff8;
   color: #333;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
+  height: auto; /* Убираем фиксированную высоту */
+  overflow: hidden;
+  word-wrap: break-word; /* Перенос слов, если они слишком длинные */
 }
 
-input {
-  width: 50px;
-  padding: 5px;
+input[type="date"] {
+  width: 180px;
+  padding: 10px;
   font-size: 14px;
   border: 1px solid #ddd;
   border-radius: 4px;
   text-align: center;
+  background-color: #fff;
+  margin-top: 10px;
 }
 
 .summary {
@@ -82,9 +92,8 @@ input {
   margin-top: 10px;
   padding: 10px 25px;
   font-size: 16px;
-  font-weight: bold;
   background-color: #f6fff8;
-  color: #63fdc2;
+  color: #000000;
   border: 2px solid #63fdc2;
   border-radius: 8px;
   cursor: pointer;
@@ -93,6 +102,49 @@ input {
 
 .bookNow:hover {
   background-color: #63fdc2;
-  color: white;
+  color: rgb(0, 0, 0);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+.touristsInput {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
+}
+
+.touristsInput:focus {
+  border-color: #63fdc2;
+  outline: none;
+}
+
+.touristsInput[type="number"] {
+  -moz-appearance: textfield; /* Убирает стрелки в Firefox */
+  -webkit-appearance: none; /* Убирает стрелки в Safari */
+}
+
+.touristsInput::-webkit-outer-spin-button,
+.touristsInput::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* Убирает стрелки в Chrome и Safari */
+  margin: 0;
+}
+
+.touristsInput:invalid {
+  border-color: red;
+}
+
+.touristsInput:valid {
+  border-color: green;
+}
+
+.totalPrice {
+  margin: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: right;
+  color: #26434d;
+}
+

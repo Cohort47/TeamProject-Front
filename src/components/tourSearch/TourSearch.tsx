@@ -15,8 +15,8 @@ const countriesWithCities = {
   Испания: ["Мадрид", "Барселона", "Валенсия", "Севилья"],
   Греция: ["Афины", "Салоники", "Ираклион"],
   Италия: ["Рим", "Милан", "Венеция", "Неаполь"],
-  Турция: ["Стамбул", "Анкара", "Измир", "Анталия","Гечек"],
-};  
+  Турция: ["Стамбул", "Анкара", "Измир", "Анталия", "Гечек"],
+};
 
 interface TourSearchProps {
   onSearch: (filters: {
@@ -28,15 +28,13 @@ interface TourSearchProps {
   }) => void;
 }
 
-
-const TourSearch: React.FC<TourSearchProps> = ({onSearch}) => {
+const TourSearch: React.FC<TourSearchProps> = ({ onSearch }) => {
   // Состояния для выбранной страны и города
   const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [selectedCity, setSelectedCity] = useState<string>("");
   const [selectedDate, setSelectedDate] = useState<string>("");
-  const [days, setDays] = useState<number>(7);
+  const [days, setDays] = useState<number>(2);
   const [tourists, setTourists] = useState<number>(2);
-
 
   // Функция для обработки изменения страны
   const handleCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -50,10 +48,22 @@ const TourSearch: React.FC<TourSearchProps> = ({onSearch}) => {
     setSelectedCity(event.target.value);
   };
 
+  const handleDateChange = (date: string) => {
+    setSelectedDate(date);
+    sessionStorage.setItem("date", date);
+  };
+
+  const handleAmountOfPeopleChange = (value: number) => {
+    setTourists(value);
+    sessionStorage.setItem("tourists", value.toString());
+  };
+
   // Получаем список городов для выбранной страны
   const cities: string[] = selectedCountry
-  ? countriesWithCities[selectedCountry as keyof typeof countriesWithCities] || []
-  : [];
+    ? countriesWithCities[
+        selectedCountry as keyof typeof countriesWithCities
+      ] || []
+    : [];
 
   const handleSearchClick = () => {
     onSearch({
@@ -64,8 +74,6 @@ const TourSearch: React.FC<TourSearchProps> = ({onSearch}) => {
       tourists,
     });
   };
-
-
 
   return (
     <div className={styles.tourSearchContainer}>
@@ -89,7 +97,7 @@ const TourSearch: React.FC<TourSearchProps> = ({onSearch}) => {
           <select
             value={selectedCity}
             onChange={handleCityChange}
-            disabled={!selectedCountry} 
+            disabled={!selectedCountry}
           >
             <option value="" disabled>
               {selectedCountry ? "Выберите город" : "Выберите страну"}
@@ -103,29 +111,33 @@ const TourSearch: React.FC<TourSearchProps> = ({onSearch}) => {
         </div>
         <div className={`${styles.searchField} ${styles.dateField}`}>
           <label>Дата</label>
-          <input 
+          <input
             type="date"
             value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
+            onChange={(e) => handleDateChange(e.target.value)}
           />
         </div>
         <div className={`${styles.searchField} ${styles.smallField}`}>
           <label>Дней</label>
-          <input type="number"
+          <input
+            type="number"
             value={days}
             min="1"
-            onChange={(e) => setDays(Number(e.target.value))} />
+            onChange={(e) => setDays(Number(e.target.value))}
+          />
         </div>
         <div className={`${styles.searchField} ${styles.smallField}`}>
           <label>Туристы</label>
           <input
-           type="number"
-           value={tourists}
-           min="1"
-           onChange={(e) => setTourists(Number(e.target.value))}
+            type="number"
+            value={tourists}
+            min="1"
+            onChange={(e) => handleAmountOfPeopleChange(Number(e.target.value))}
           />
         </div>
-        <button className={styles.searchButton} onClick={handleSearchClick}>Найти</button>
+        <button className={styles.searchButton} onClick={handleSearchClick}>
+          Найти
+        </button>
       </div>
     </div>
   );
