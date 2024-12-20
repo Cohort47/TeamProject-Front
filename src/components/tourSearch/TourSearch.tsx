@@ -3,21 +3,20 @@ import styles from "./TourSearch.module.css";
 
 // Данные стран и городов
 const countriesWithCities = {
-  Исландия: ["Рейкьявик", "Акюрейри", "Коупавогюр"],
-  Germany: ["Berlin", "Гамбург", "Munich", "Штутгарт", "Франкфурт"],
-  Франция: ["Париж", "Лион", "Марсель", "Бордо", "Тулуза"],
-  Чехия: ["Прага", "Брно", "Острава", "Пльзень"],
-  Венгрия: ["Будапешт", "Дебрецен", "Сегед", "Мишкольц"],
-  Словения: ["Любляна", "Марибор", "Крань"],
-  Португалия: ["Лиссабон", "Порту", "Фару"],
-  Хорватия: ["Загреб", "Сплит", "Дубровник"],
-  Австрия: ["Вена", "Зальцбург", "Инсбрук", "Грац"],
-  Испания: ["Мадрид", "Барселона", "Валенсия", "Севилья"],
-  Греция: ["Афины", "Салоники", "Ираклион"],
-  Италия: ["Рим", "Милан", "Венеция", "Неаполь"],
-  Турция: ["Стамбул", "Анкара", "Измир", "Анталия", "Гечек"],
+  Iceland: ["Reykjavik", "Akureyri", "Kopavogur"],
+  Germany: ["Berlin", "Hamburg", "Munich", "Stuttgart", "Frankfurt"],
+  France: ["Paris", "Lyon", "Marseille", "Bordeaux", "Toulouse"],
+  Czechia: ["Prague", "Brno", "Ostrava", "Pilsen"],
+  Hungary: ["Budapest", "Debrecen", "Szeged", "Miskolc"],
+  Slovenia: ["Ljubljana", "Maribor", "Kranj"],
+  Portugal: ["Lisbon", "Porto", "Faro"],
+  Croatia: ["Zagreb", "Split", "Dubrovnik"],
+  Austria: ["Vienna", "Salzburg", "Innsbruck", "Graz"],
+  Spain: ["Madrid", "Barcelona", "Valencia", "Seville"],
+  Greece: ["Athens", "Thessaloniki", "Heraklion"],
+  Italy: ["Rome", "Milan", "Venice", "Naples"],
+  Turkey: ["Istanbul", "Ankara", "Izmir", "Antalya", "Göcek"],
 };
-
 interface TourSearchProps {
   onSearch: (filters: {
     country: string;
