@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./TourDetailsPage.module.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../loader/Loader";
+
 
 //Tour from bd
 interface Tour {
@@ -20,17 +21,15 @@ interface Tour {
 }
 
 const TourDetailsPage: React.FC = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const [tourDetails, setTourDetails] =  useState<Tour| undefined>(undefined);
+  const [tourDetails, setTourDetails] = useState<Tour | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [images, setImages] =useState<string[]>([]);
+  const [images, setImages] = useState<string[]>([]);
   const [showAll, setShowAll] = useState<boolean>(false);
-  const [mainImage, setMainImage] = useState<string>('');
-  const [, setIsDelayedLoading] = useState<boolean>(false); 
-
-
-
+  const [mainImage, setMainImage] = useState<string>("");
+  const [, setIsDelayedLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchTourDetails = async () => {
@@ -44,9 +43,9 @@ const TourDetailsPage: React.FC = () => {
         setTourDetails(data);
         setImages(data.photoLinks);
         setMainImage(data.photoLinks[0]);
-        
+
         setTimeout(() => {
-          setIsDelayedLoading(true); 
+          setIsDelayedLoading(true);
         }, 4000);
       } catch (err: any) {
         setError(err.message);
@@ -57,6 +56,18 @@ const TourDetailsPage: React.FC = () => {
 
     fetchTourDetails();
   }, [id]);
+
+  const handleBookingClick = () => {
+    const token = localStorage.getItem("token");
+    if (token === "" || !token) {
+      navigate("/login")
+      
+    }else{
+      navigate(`/booking/${id}`)
+    }
+  };
+
+
 
 
   const handleImageClick = (event: React.MouseEvent): void => {
@@ -80,8 +91,7 @@ const TourDetailsPage: React.FC = () => {
 
   const showNextImage = () => {
     const currentIndex = images.indexOf(mainImage);
-    const nextIndex =
-      currentIndex < images.length - 1 ? currentIndex + 1 : 0;
+    const nextIndex = currentIndex < images.length - 1 ? currentIndex + 1 : 0;
     setMainImage(images[nextIndex]);
   };
 
@@ -97,73 +107,75 @@ const TourDetailsPage: React.FC = () => {
     setMainImage(images[0]);
   };
 
-  if(error){
+  if (error) {
     console.log(error);
   }
 
   if (loading || !tourDetails) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   return (
     <div className={styles.container}>
-    <div className={styles.hotelInfo}>
-      <div className={styles.hotelDetails}>
-        <h2 className={styles.title}>{tourDetails.title}</h2>
-        <p className={styles.address}>
-          {tourDetails.city}, {tourDetails.country}
-        </p>
+      <div className={styles.hotelInfo}>
+        <div className={styles.hotelDetails}>
+          <h2 className={styles.title}>{tourDetails.title}</h2>
+          <p className={styles.address}>
+            {tourDetails.city}, {tourDetails.country}
+          </p>
+        </div>
+        <div className={styles.price}>
+          <p className={styles.priceText}>{tourDetails.price} €</p>
+        </div>
       </div>
-      <div className={styles.price}>
-        <p className={styles.priceText}>{tourDetails.price} €</p>
-      </div>
-    </div>
 
-    <div className={styles.gallery}>
-      <div className={styles.mainImageWrapper}>
-        <button
-          className={`${styles.arrowButton} ${styles.leftArrow}`}
-          onClick={showPreviousImage}
-        ></button>
+      <div className={styles.gallery}>
+        <div className={styles.mainImageWrapper}>
+          <button
+            className={`${styles.arrowButton} ${styles.leftArrow}`}
+            onClick={showPreviousImage}
+          ></button>
 
-        <div className={styles.mainImage} onClick={handleImageClick}>
-          <img src={mainImage} alt="Main Tour" className={styles.image} />
+          <div className={styles.mainImage} onClick={handleImageClick}>
+            <img src={mainImage} alt="Main Tour" className={styles.image} />
+          </div>
+
+          <button
+            className={`${styles.arrowButton} ${styles.rightArrow}`}
+            onClick={showNextImage}
+          ></button>
         </div>
 
-        <button
-          className={`${styles.arrowButton} ${styles.rightArrow}`}
-          onClick={showNextImage}
-        ></button>
+        <div className={styles.smallImages}>
+          {images.slice(1).map((image, index) => (
+            <img
+              key={index}
+              src={image}
+              alt={`Small ${index + 1}`}
+              className={styles.smallImage}
+              onClick={() => setMainImage(image)}
+            />
+          ))}
+          {images.length > 6 && !showAll && (
+            <div className={styles.morePhotos} onClick={handleShowAllClick}>
+              +{images.length - 6} фотографий
+            </div>
+          )}
+          {showAll && (
+            <div className={styles.morePhotos} onClick={handleHideImagesClick}>
+              Скрыть фото
+            </div>
+          )}
+        </div>
       </div>
 
-      <div className={styles.smallImages}>
-        {images.slice(1).map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Small ${index + 1}`}
-            className={styles.smallImage}
-            onClick={() => setMainImage(image)}
-          />
-        ))}
-        {images.length > 6 && !showAll && (
-          <div className={styles.morePhotos} onClick={handleShowAllClick}>
-            +{images.length - 6} фотографий
-          </div>
-        )}
-        {showAll && (
-          <div className={styles.morePhotos} onClick={handleHideImagesClick}>
-            Скрыть фото
-          </div>
-        )}
+      <div className={styles.content}>
+        <p className={styles.description}>{tourDetails.description}</p>
+        <button className={styles.bookButton} onClick={handleBookingClick}>
+          Забронировать
+        </button>
       </div>
     </div>
-
-    <div className={styles.content}>
-      <p className={styles.description}>{tourDetails.description}</p>
-      <button className={styles.bookButton}>Забронировать</button>
-    </div>
-  </div>
   );
 };
 

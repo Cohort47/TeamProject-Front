@@ -20,6 +20,7 @@ import TourDetailsPage from "./components/tourDetailsPage/TourDetailsPage";
 import AccountManagement from "./components/personalAccountManagement/AccountManagement";
 import YourTours from "./components/personalAccountTours/YourTours";
 import AccountDetails from "./components/accountDetails/AccountDetails";
+import BookingForm from "./components/bookingForm/BookingForm";
 
 
 const App: React.FC = () => {
@@ -56,6 +57,7 @@ const App: React.FC = () => {
             <Route path="/account-management" element={<AccountManagement />} />
             <Route path ="/account-details" element={<AccountDetails/>}/>
             <Route path="/account-tours" element={<YourTours/>}/>
+            <Route path="/booking/:id" element={<BookingForm/>}/>
           </Routes>
           <Footer />
         </>
