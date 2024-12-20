@@ -7,14 +7,13 @@
 }
 
 .registrationContainer {
-  position:inherit;
+  position: inherit;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 400px;
   background: none;
   margin: 30px;
-
 }
 
 .registrationBox {
@@ -33,7 +32,7 @@
   border-radius: 20px;
   text-align: center;
   max-width: 400px;
-  width: 30%;
+  width: 50%;
 }
 
 .title {
@@ -44,11 +43,36 @@
 
 .input {
   width: calc(100% - 20px);
+  height: 25px;
   padding: 5px;
-  margin: 5px 0;
+  margin: 15px 0;
   border: 1px solid #ccc;
   border-radius: 20px;
   font-size: 16px;
+  padding-left: 8px;
+}
+
+/* Ошибочные поля ввода */
+.input.error {
+  border-color: #dc3545; /* Красная граница для ошибки */
+  background-color: #f8d7da; /* Светло-красный фон для визуальной подсказки */
+  position: relative;
+}
+
+.errorMessage {
+  font-size: 0.75rem; /* Уменьшенный шрифт для сообщений об ошибке */
+  color: #dc3545; /* Красный цвет текста */
+  position: absolute; /* Позиционируем относительно родительского блока */
+  top: -8px; /* Располагаем немного выше инпута */
+  left: 10px; /* Смещение от левого края */
+  padding: 2px 4px;
+  z-index: 1;
+  width: 100%; /* Ошибка будет занимать всю ширину инпута */
+  text-align: left; /* Выравнивание текста по левому краю */
+}
+
+.inputGroup {
+  position: relative; /* Чтобы ошибки располагались внутри контейнера */
 }
 
 .passwordContainer {
