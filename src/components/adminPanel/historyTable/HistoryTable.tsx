@@ -1,16 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import styles from "../tableCss/Table.module.css";
 
+interface Booking {
+  id: number;
+  user: { id: string };
+  tour: { id: string };
+  bookingDate: string;
+  tourDate: string;
+  amountOfPeople: number;
+  state: string;
+}
+
 const HistoryTable: React.FC = () => {
-  const historyData = [
-    { id: "001", userId: "11123", typeId: "ER123", startDate: "2024-11-01", endDate: "2024-11-9", status: "AVAILABLE"},
-    { id: "001", userId: "11123", typeId: "ER123", startDate: "2024-11-01", endDate: "2024-11-9", status: "BOOKED"},
-    { id: "001", userId: "11123", typeId: "ER123", startDate: "2024-11-01", endDate: "2024-11-9", status: "PAID"},
-    { id: "001", userId: "11123", typeId: "ER123", startDate: "2024-11-01", endDate: "2024-11-9", status: "CANCELLED"},
-    { id: "001", userId: "11123", typeId: "ER123", startDate: "2024-11-01", endDate: "2024-11-9", status: "BOOKED"},
-    { id: "001", userId: "11123", typeId: "ER123", startDate: "2024-11-01", endDate: "2024-11-9", status: "BOOKED"},
-    { id: "001", userId: "11123", typeId: "ER123", startDate: "2024-11-01", endDate: "2024-11-9", status: "BOOKED"},
-  ];
+  const token = localStorage.getItem("token");
+  const [historyData, setHistoryData] = useState<Booking[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchHistory = async () => {
+      try {
+        const response = await axios.get("api/bookings/all",{
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }});
+        setHistoryData(response.data);
+      } catch (err: any) {
+        setError(err.response?.data?.message || "Ошибка при загрузке данных.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHistory();
+  }, []);
+
+  if (loading) return <div className={styles.loading}>Загрузка...</div>;
+  if (error) return <div className={styles.error}>{error}</div>;
 
   return (
     <div className={styles.container}>
@@ -21,8 +48,9 @@ const HistoryTable: React.FC = () => {
             <th>ID</th>
             <th>ID User</th>
             <th>ID Тура</th>
-            <th>Начальная дата</th>
-            <th>Конечная дата</th>
+            <th>Дата бронирования</th>
+            <th>Дата тура</th>
+            <th>Количество людей</th>
             <th>Статус</th>
           </tr>
         </thead>
@@ -30,11 +58,12 @@ const HistoryTable: React.FC = () => {
           {historyData.map((item) => (
             <tr key={item.id}>
               <td>{item.id}</td>
-              <td>{item.userId}</td>
-              <td>{item.typeId}</td>
-              <td>{item.startDate}</td>
-              <td>{item.endDate}</td>
-              <td>{item.status}</td>
+              <td>{item.user.id}</td>
+              <td>{item.tour.id}</td>
+              <td>{item.bookingDate}</td>
+              <td>{item.tourDate}</td>
+              <td>{item.amountOfPeople}</td>
+              <td>{item.state}</td>
             </tr>
           ))}
         </tbody>
