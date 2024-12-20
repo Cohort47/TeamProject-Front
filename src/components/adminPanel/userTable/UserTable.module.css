@@ -39,7 +39,7 @@
 }
 
 .blockBtn {
-  background: #dc3545;
+  background: #ffae00;
   color: #fff;
   border: none;
   padding: 7px 10px;
@@ -49,7 +49,33 @@
 }
 
 .blockBtn:hover {
-  background-color: #c82333
+  background-color: #c87e23
+}
+
+.deleteBtn {
+  background-color: #dc3545; /* Red background for delete action */
+  color: #fff; /* White text for contrast */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 8px 12px; /* Padding for a better button size */
+  font-size: 14px; /* Standard font size */
+  cursor: pointer; /* Pointer cursor to indicate interactivity */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effects */
+}
+
+.deleteBtn:hover {
+  background-color: #b02a37; /* Darker red on hover */
+  transform: scale(1.05); /* Slight scaling effect */
+}
+
+.deleteBtn:active {
+  background-color: #841f2a; /* Even darker red on click */
+  transform: scale(1); /* Remove scaling effect on click */
+}
+
+.deleteBtn:focus {
+  outline: 2px solid #f8d7da; /* Light red outline for focus */
+  outline-offset: 2px; /* Slight offset for better visual feedback */
 }
 
 .editForm {

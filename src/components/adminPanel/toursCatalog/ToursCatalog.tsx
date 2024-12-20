@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import styles from "./ToursCatalog.module.css";
 
 type Tour = {
@@ -13,132 +14,130 @@ type Tour = {
 };
 
 const ToursCatalog: React.FC = () => {
-  const [tours, setTours] = useState<Tour[]>([
-    {
-      id: 1,
-      title: "7 дневное путешествие в отель RIXOS ",
-      description: "Горящее предложение!",
-      price: "150",
-      duration: 7,
-      images: [
-        "https://media.istockphoto.com/id/1364624347/de/foto/junge-frau-beim-schnorcheln-neben-einer-gr%C3%BCnen-schildkr%C3%B6te-in-einem-klaren-blauen-wasser.jpg?s=2048x2048&w=is&k=20&c=BruGqjmOvoWIRk4K6VCQMbId4dZCju2Fbp8ELosVw2c=",
-        "https://media.istockphoto.com/id/1364624347/de/foto/junge-frau-beim-schnorcheln-neben-einer-gr%C3%BCnen-schildkr%C3%B6te-in-einem-klaren-blauen-wasser.jpg?s=2048x2048&w=is&k=20&c=BruGqjmOvoWIRk4K6VCQMbId4dZCju2Fbp8ELosVw2c=",
-      ],
-      startDate: "2024-01-01",
-      endDate: "2024-01-08",
-    },
-    {
-      id: 2,
-      title: "Отдых на пляже",
-      description: "Oтдых на солнечном пляже с белым песком.",
-      price: "200",
-      duration: 7,
-      images: [
-        "https://media.istockphoto.com/id/1813433942/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%B7%D0%B0%D0%BA%D0%B0%D1%82-%D0%BD%D0%B0%D0%B4-%D0%B8%D0%BD%D0%B4%D0%B8%D0%B9%D1%81%D0%BA%D0%B8%D0%BC-%D0%BE%D0%BA%D0%B5%D0%B0%D0%BD%D0%BE%D0%BC-%D0%BC%D0%B0%D0%BB%D1%8C%D0%B4%D0%B8%D0%B2%D1%8B.jpg?s=2048x2048&w=is&k=20&c=gYCHxZe2T5lBnXUZwYJxsmYdT8Q0tfZqyDi-oiFNwUc=",
-        "https://media.istockphoto.com/id/624215532/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%BC%D0%BE%D1%80%D1%81%D0%BA%D0%BE%D0%B9-%D0%BF%D0%B5%D1%81%D1%87%D0%B0%D0%BD%D1%8B%D0%B9-%D0%BF%D0%BB%D1%8F%D0%B6-%D0%BD%D0%B0-%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B2%D0%B5-%D0%BA%D0%B0%D0%BD%D0%B8-%D0%BA%D1%80%D0%B0%D1%81%D0%B8%D0%B2%D1%8B%D0%B9-%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B2-%D0%BC%D0%B0%D0%BB%D1%8C%D0%B4%D0%B8%D0%B2%D1%8B-%D0%B8%D1%8E%D0%BD%D1%8C-2016.jpg?s=2048x2048&w=is&k=20&c=OsuHPVSLBb3iT_DWFLb3BwqGqwsG7wUHXArrP-vhz4o=",
-        "https://media.istockphoto.com/id/2153741067/de/foto/boardwalk-into-tropical-paradise-island.jpg?s=2048x2048&w=is&k=20&c=t1ns6T2wvkqNst4U8wh92eOd-emY1mG2nU4xoTt4_yo=",
-      ],
-      startDate: "2024-01-01",
-      endDate: "2024-01-08",
-    },
-  ]);
-
+  const [tours, setTours] = useState<Tour[]>([]);
   const [editingTour, setEditingTour] = useState<Tour | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(`/api/tours`)
+      .then((response) => {
+        setTours(response.data);
+      })
+      .catch((err) => {
+        console.error("Ошибка при получении данных о турах:", err);
+      });
+  }, []);
+
+  const createTour = async (newTour: Tour) => {
+    try {
+      const response = await axios.post("/api/admin/tours", newTour);
+      setTours((prevTours) => [...prevTours, response.data]);
+    } catch (error) {
+      console.error("Error creating tour:", error);
+    }
+  };
+
+  const updateTour = async (id: number, updatedTour: Tour) => {
+    try {
+      const response = await axios.put(`/api/admin/tours/${id}`, updatedTour);
+      setTours((prevTours) =>
+        prevTours.map((tour) => (tour.id === id ? response.data : tour))
+      );
+    } catch (error) {
+      console.error("Error updating tour:", error);
+    }
+  };
+
+  const deleteTour = async (id: number) => {
+    try {
+      await axios.delete(`/api/admin/tours/${id}`);
+      setTours((prevTours) => prevTours.filter((tour) => tour.id !== id));
+    } catch (error) {
+      console.error("Error deleting tour:", error);
+    }
+  };
 
   const handleEditTour = (tour: Tour) => {
     setEditingTour(tour);
     setIsModalOpen(true);
   };
 
-  const handleSaveTour = () => {
+  const handleSaveTour = async () => {
     if (editingTour) {
-      setTours((prevTours) =>
-        prevTours.map((tour) =>
-          tour.id === editingTour.id ? editingTour : tour
-        )
-      );
+      if (editingTour.id) {
+        await updateTour(editingTour.id, editingTour);
+      } else {
+        await createTour(editingTour);
+      }
       setEditingTour(null);
       setIsModalOpen(false);
-    }
-  };
-
-  const handleDeleteTour = (id: number) => {
-    setTours((prevTours) => prevTours.filter((tour) => tour.id !== id));
-  };
-
-  const handleAddImage = () => {
-    if (editingTour) {
-      setEditingTour({
-        ...editingTour,
-        images: [...editingTour.images, ""],
-      });
-    }
-  };
-
-  const handleDeleteImage = (index: number) => {
-    if (editingTour) {
-      setEditingTour({
-        ...editingTour,
-        images: editingTour.images.filter((_, i) => i !== index),
-      });
-    }
-  };
-
-  const handleImageChange = (index: number, value: string) => {
-    if (editingTour) {
-      const updatedImages = [...editingTour.images];
-      updatedImages[index] = value;
-      setEditingTour({
-        ...editingTour,
-        images: updatedImages,
-      });
     }
   };
 
   return (
     <div className={styles.toursCatalog}>
       <h2 className={styles.catalogTitle}>Каталог туров</h2>
-      <button className={styles.addTourBtn}>Добавить тур</button>
-
+      <button
+        className={styles.addTourBtn}
+        onClick={() => {
+          setEditingTour({
+            id: 0,
+            title: "",
+            description: "",
+            duration: 0,
+            price: "",
+            images: [],
+          });
+          setIsModalOpen(true);
+        }}
+      >
+        Добавить тур
+      </button>
       <div className={styles.toursList}>
-        {tours.map((tour) => (
-          <div key={tour.id} className={styles.tourCard}>
-            <h3>{tour.title}</h3>
-            <p>{tour.description}</p>
-            <p>Продолжительность: {tour.duration} дней</p>
-            <p>Цена: {tour.price}€</p>
-            <p>Дата начала: {tour.startDate}</p>
-            <p>Дата окончания: {tour.endDate}</p>
-
-            <div className={styles.images}>
-              {tour.images.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt={`Tour ${index + 1}`}
-                  className={styles.image}
-                />
-              ))}
+        {tours.length > 0 ? (
+          tours.map((tour) => (
+            <div key={tour.id} className={styles.tourCard}>
+              <h3>{tour.title}</h3>
+              <p>{tour.description}</p>
+              <p>Продолжительность: {tour.duration} дней</p>
+              <p>Цена: {tour.price}€</p>
+              {tour.startDate && <p>Дата начала: {tour.startDate}</p>}
+              {tour.endDate && <p>Дата окончания: {tour.endDate}</p>}
+              <div className={styles.images}>
+                {tour.images && tour.images.length > 0 ? (
+                  tour.images.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image}
+                      alt={`Tour ${index + 1}`}
+                      className={styles.image}
+                    />
+                  ))
+                ) : (
+                  <p>Нет изображений</p>
+                )}
+              </div>
+              <div className={styles.buttonContainer}>
+                <button
+                  onClick={() => handleEditTour(tour)}
+                  className={styles.editBtn}
+                >
+                  Редактировать
+                </button>
+                <button
+                  onClick={() => deleteTour(tour.id)}
+                  className={styles.deleteBtn}
+                >
+                  Удалить
+                </button>
+              </div>
             </div>
-            <div className={styles.buttonContainer}>
-              <button
-                onClick={() => handleEditTour(tour)}
-                className={styles.editBtn}
-              >
-                Редактировать
-              </button>
-              <button
-                onClick={() => handleDeleteTour(tour.id)}
-                className={styles.deleteBtn}
-              >
-                Удалить
-              </button>
-            </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p>Нет доступных туров</p>
+        )}
       </div>
-
       {isModalOpen && editingTour && (
         <div className={styles.modalOverlay}>
           <div className={styles.editTourForm}>
@@ -184,61 +183,24 @@ const ToursCatalog: React.FC = () => {
               }
               className={styles.input}
             />
-
             <input
               type="date"
               placeholder="Дата начала"
-              value={editingTour.startDate}
+              value={editingTour.startDate || ""}
               onChange={(e) =>
-                setEditingTour({
-                  ...editingTour,
-                  startDate: e.target.value,
-                })
+                setEditingTour({ ...editingTour, startDate: e.target.value })
               }
               className={styles.input}
             />
             <input
               type="date"
               placeholder="Дата окончания"
-              value={editingTour.endDate}
+              value={editingTour.endDate || ""}
               onChange={(e) =>
-                setEditingTour({
-                  ...editingTour,
-                  endDate: e.target.value,
-                })
+                setEditingTour({ ...editingTour, endDate: e.target.value })
               }
               className={styles.input}
             />
-
-            <div className={styles.imagesSection}>
-              <h4>Фотографии</h4>
-              {editingTour.images.map((image, index) => (
-                <div key={index} className={styles.imageRow}>
-                  <input
-                    type="text"
-                    placeholder="Ссылка на изображение"
-                    value={image}
-                    onChange={(e) => handleImageChange(index, e.target.value)}
-                    className={styles.input}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => handleDeleteImage(index)}
-                    className={styles.deleteBtn}
-                  >
-                    Удалить
-                  </button>
-                </div>
-              ))}
-              <button
-                type="button"
-                onClick={handleAddImage}
-                className={styles.addBtn}
-              >
-                Добавить изображение
-              </button>
-            </div>
-
             <button onClick={handleSaveTour} className={styles.saveBtn}>
               Сохранить изменения
             </button>
